@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: "Shataxi Dubey"
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - href: blogs.qmd
+        text: Blogs
+      - href: SHATAXI_DUBEY_CV.pdf
+        text: CV
+    tools:
+      - icon: github
+        href: https://github.com/shataxi
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

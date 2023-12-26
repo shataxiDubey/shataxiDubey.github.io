@@ -1,0 +1,30 @@
+---
+title: "Shataxi Dubey"
+image: profile.jpg
+about:
+  template: trestles
+  image-shape: round
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com
+    - icon: github
+      text: Github
+      href: https://github.com
+
+---
+
+Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar. 
+
+## Education
+
+B.Tech Computer Science and Engineering |
+University of Allahabad | Prayagraj, Uttar Pradesh |
+ July 2018 - May 2022
+
+
+## Experience
+
+Associate Engineer | 
+Indiamart Intermesh Ltd | May 2022 - July 2023
+
