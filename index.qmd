@@ -14,7 +14,13 @@ about:
 
 ---
 
-Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar. 
+Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar.
+
+My interest area lies on the intersection of Mathematics & Computer Science. 
+It gives the power to unveil the hidden patterns and facts.
+I will be working on my thesis under the guidance of [Prof. Nipun Batra](https://nipunbatra.github.io) this Spring. 
+
+Hoping to add sustainable solutions to make world better!
 
 ## Education
 
