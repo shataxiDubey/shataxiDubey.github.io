@@ -13,14 +13,17 @@ website:
         text: CV
     tools:
       - icon: github
-        href: https://github.com/shataxi
+        href: https://github.com/shataxidubey
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: cyborg
     css: styles.css
     toc: true
 execute:
   freeze: auto
+
 
 
