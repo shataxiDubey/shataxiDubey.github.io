@@ -4,28 +4,7 @@
     "href": "blogs.html",
     "title": "Blogs",
     "section": "",
-    "text": "Image Transformation\n\n\n\n\n\n\n\nimages\n\n\nopencv\n\n\n\n\nVarious ways to transform image\n\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Shataxi Dubey",
-    "section": "",
-    "text": "Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar.\nMy interest area lies on the intersection of Mathematics & Computer Science. It gives the power to unveil the hidden patterns and facts. I will be working on my thesis under the guidance of Prof. Nipun Batra this Spring.\nHoping to add sustainable solutions to make world better!"
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Shataxi Dubey",
-    "section": "Education",
-    "text": "Education\nB.Tech Computer Science and Engineering | University of Allahabad | Prayagraj, Uttar Pradesh | July 2018 - May 2022"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Shataxi Dubey",
-    "section": "Experience",
-    "text": "Experience\nAssociate Engineer | Indiamart Intermesh Ltd | May 2022 - July 2023"
+    "text": "Python Format Specifier\n\n\n\n\n\n\nprecision\n\n\nformat\n\n\n\nFormatting numbers\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nImage Transformation\n\n\n\n\n\n\nimages\n\n\nopencv\n\n\n\nVarious ways to transform image\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Image-transformation.html",
@@ -89,5 +68,33 @@
     "title": "Image Transformation",
     "section": "Center Crop of Image",
     "text": "Center Crop of Image\n\n# get the image width & height\nwidth, height = img.shape[1], img.shape[0]\n\n# get the image cropped width & height\ncrop_width , crop_height = 500, 600\n\nhalf_crop_width , half_crop_height = int(crop_width/2) , int(crop_height/2)\n\nmid_x, mid_y = int(width/2), int(height/2)\n\ncenter_cropped_img=img[mid_y-half_crop_height : mid_y+half_crop_height, mid_x-half_crop_width : mid_x+half_crop_width]\n\n# disable x & y axis\nplt.axis('off')\n# show the resulting image\nplt.imshow(center_cropped_img)\nplt.show()"
+  },
+  {
+    "objectID": "posts/python-format-specifier.html",
+    "href": "posts/python-format-specifier.html",
+    "title": "Python Format Specifier",
+    "section": "",
+    "text": "To format a number to sum precision point using format\n\n'{:.3f}'.format(3.145667)\n\n'3.146'\n\n\n\n'{:.3f}'.format(3.1)\n\n'3.100'"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shataxi Dubey",
+    "section": "",
+    "text": "Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar.\nMy interest area lies on the intersection of Mathematics & Computer Science. It gives the power to unveil the hidden patterns and facts. I will be working on my thesis under the guidance of Prof. Nipun Batra this Spring.\nHoping to add sustainable solutions to make world better!"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Shataxi Dubey",
+    "section": "Education",
+    "text": "Education\nB.Tech Computer Science and Engineering | University of Allahabad | Prayagraj, Uttar Pradesh | July 2018 - May 2022"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Shataxi Dubey",
+    "section": "Experience",
+    "text": "Experience\nAssociate Engineer | Indiamart Intermesh Ltd | May 2022 - July 2023"
   }
 ]

@@ -1,1 +1,1 @@
-Sitemap: https://github.com/shataxiDubey/shataxiDubey.github.io/sitemap.xml
+Sitemap: https://shataxiDubey.github.io/sitemap.xml

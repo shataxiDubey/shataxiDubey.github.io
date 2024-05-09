@@ -2,6 +2,7 @@
   {
     "listing": "/blogs.html",
     "items": [
+      "/posts/python-format-specifier.html",
       "/posts/Image-transformation.html"
     ]
   }
