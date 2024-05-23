@@ -2,18 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shataxiDubey.github.io/blogs.html</loc>
-    <lastmod>2024-05-09T09:38:14.862Z</lastmod>
+    <lastmod>2024-05-23T17:09:56.344Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/Image-transformation.html</loc>
-    <lastmod>2024-05-09T09:38:14.878Z</lastmod>
+    <lastmod>2024-05-23T17:09:56.364Z</lastmod>
   </url>
   <url>
-    <loc>https://shataxiDubey.github.io/posts/python-format-specifier.html</loc>
-    <lastmod>2024-05-09T09:38:14.878Z</lastmod>
+    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
+    <lastmod>2024-05-23T17:09:56.364Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/index.html</loc>
-    <lastmod>2024-05-09T09:38:14.862Z</lastmod>
+    <lastmod>2024-05-23T17:09:56.348Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/python-format-specifier.html</loc>
+    <lastmod>2024-05-23T17:09:56.364Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/mean_average_precision.html</loc>
+    <lastmod>2024-05-23T17:09:56.364Z</lastmod>
   </url>
 </urlset>
