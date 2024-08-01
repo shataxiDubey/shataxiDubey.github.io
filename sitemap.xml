@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shataxiDubey.github.io/index.html</loc>
-    <lastmod>2024-08-01T12:56:45.083Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/non_max_suppression.html</loc>
-    <lastmod>2024-08-01T12:56:45.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
-    <lastmod>2024-08-01T12:56:45.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/precision_recall.html</loc>
-    <lastmod>2024-08-01T12:56:45.103Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/blogs.html</loc>
-    <lastmod>2024-08-01T12:56:45.079Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/Image-transformation.html</loc>
-    <lastmod>2024-08-01T12:56:45.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/object_detection_pipeline.html</loc>
-    <lastmod>2024-08-01T12:56:45.099Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/mean_average_precision.html</loc>
-    <lastmod>2024-08-01T12:56:45.099Z</lastmod>
+    <lastmod>2024-08-01T13:04:33.157Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/python-format-specifier.html</loc>
-    <lastmod>2024-08-01T12:56:45.103Z</lastmod>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/Image-transformation.html</loc>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/blogs.html</loc>
+    <lastmod>2024-08-01T13:04:33.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/non_max_suppression.html</loc>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/mean_average_precision.html</loc>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/precision_recall.html</loc>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/object_detection_pipeline.html</loc>
+    <lastmod>2024-08-01T13:04:33.173Z</lastmod>
   </url>
 </urlset>
