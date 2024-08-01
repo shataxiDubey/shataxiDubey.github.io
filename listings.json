@@ -3,7 +3,10 @@
     "listing": "/blogs.html",
     "items": [
       "/posts/SOTA_object_detection.html",
+      "/posts/precision_recall.html",
+      "/posts/object_detection_pipeline.html",
       "/posts/mean_average_precision.html",
+      "/posts/non_max_suppression.html",
       "/posts/python-format-specifier.html",
       "/posts/Image-transformation.html"
     ]

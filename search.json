@@ -1,10 +1,52 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shataxi Dubey",
+    "section": "",
+    "text": "Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar.\nMy interest area lies on the intersection of Mathematics & Computer Science. It gives the power to unveil the hidden patterns and facts. I will be working on my thesis under the guidance of Prof. Nipun Batra this Spring.\nHoping to add sustainable solutions to make world better!"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Shataxi Dubey",
+    "section": "Education",
+    "text": "Education\nB.Tech Computer Science and Engineering | University of Allahabad | Prayagraj, Uttar Pradesh | July 2018 - May 2022"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Shataxi Dubey",
+    "section": "Experience",
+    "text": "Experience\nAssociate Engineer | Indiamart Intermesh Ltd | May 2022 - July 2023"
+  },
+  {
+    "objectID": "posts/non_max_suppression.html",
+    "href": "posts/non_max_suppression.html",
+    "title": "Non max suppression",
+    "section": "",
+    "text": "Remove all the bounding boxes whose confidence is less than confidence threshld\nFor a particular category, find the bounding box with highest confidence score\nCheck its IOU with the other bounding boxes of same category\nIf the IOU &gt; IOU threshold, this means that the box is bounding the same object in such case, we remove or suppress these boxes."
+  },
+  {
+    "objectID": "posts/SOTA_object_detection.html",
+    "href": "posts/SOTA_object_detection.html",
+    "title": "Shataxi Dubey",
+    "section": "",
+    "text": "two stage detector –&gt; one stage detector –&gt; anchor free"
+  },
+  {
+    "objectID": "posts/precision_recall.html",
+    "href": "posts/precision_recall.html",
+    "title": "Precision and Recall",
+    "section": "",
+    "text": "When a model has high recall but low precision, then the model classifies most of the positive samples correctly but it has many false positives (i.e. classifies many Negative samples as Positive). When a model has high precision but low recall, then the model is accurate when it classifies a sample as Positive but it may classify only some of the positive samples.\nNote that as the recall increases, the precision decreases. The reason is that when the number of positive samples increases (high recall), the accuracy of classifying each sample correctly decreases (low precision). This is expected, as the model is more likely to fail when there are many samples.\n\nimport numpy as np\n\ny_true = [\"positive\", \"negative\", \"negative\", \"positive\", \"positive\", \"positive\", \"negative\", \"positive\", \"negative\", \"positive\", \"positive\", \"positive\", \"positive\", \"negative\", \"negative\", \"negative\"]\n\npred_scores = [0.7, 0.3, 0.5, 0.6, 0.55, 0.9, 0.4, 0.2, 0.4, 0.3, 0.7, 0.5, 0.8, 0.2, 0.3, 0.35]\n\nthresholds = np.arange(start=0.2, stop=0.7, step=0.05)\n\n\nimport sklearn.metrics\n\ndef precision_recall_curve(y_true, pred_scores, thresholds):\n    precisions = []\n    recalls = []\n    \n    for threshold in thresholds:\n        y_pred = [\"positive\" if score &gt;= threshold else \"negative\" for score in pred_scores]\n\n        precision = sklearn.metrics.precision_score(y_true=y_true, y_pred=y_pred, pos_label=\"positive\")\n        recall = sklearn.metrics.recall_score(y_true=y_true, y_pred=y_pred, pos_label=\"positive\")\n        \n        precisions.append(precision)\n        recalls.append(recall)\n\n    return precisions, recalls\n\n\n# when threshold(0.2) is low, all predicted samples become positive and it will definetly include actual positives \n# so recall will be high but precision will be low because total predicted positives are more than actual positives\ny_pred = [\"positive\" if score &gt;= 0.2 else \"negative\" for score in pred_scores]\nprecision = sklearn.metrics.precision_score(y_true=y_true, y_pred=y_pred, pos_label=\"positive\")\nrecall = sklearn.metrics.recall_score(y_true=y_true, y_pred=y_pred, pos_label=\"positive\")\nprint(f'Precision {precision}, Recall {recall}')\n\nPrecision 0.5625, Recall 1.0\n\n\n\n# when threshold(0.9) is high, positive samples will be actual positive samples so they become true positive which makes precision high\n# that is the model is more than 0.9 sure that the sample is positive, so it will be an actual positive but still you are not covering all \n# positives because of keeping high threshold\ny_pred = [\"positive\" if score &gt;= 0.9 else \"negative\" for score in pred_scores]\nprecision = sklearn.metrics.precision_score(y_true=y_true, y_pred=y_pred, pos_label=\"positive\")\nrecall = sklearn.metrics.recall_score(y_true=y_true, y_pred=y_pred, pos_label=\"positive\")\nprint(f'Precision {precision}, Recall {recall}')\n\nPrecision 1.0, Recall 0.1111111111111111\n\n\n\nprecisions, recalls = precision_recall_curve(y_true, pred_scores, thresholds)\nprint(f'Precision list {precisions}')\nprint(f'Recall list {recalls}')\n\nPrecision list [0.5625, 0.5714285714285714, 0.5714285714285714, 0.6363636363636364, 0.7, 0.875, 0.875, 1.0, 1.0, 1.0]\nRecall list [1.0, 0.8888888888888888, 0.8888888888888888, 0.7777777777777778, 0.7777777777777778, 0.7777777777777778, 0.7777777777777778, 0.6666666666666666, 0.5555555555555556, 0.4444444444444444]\n\n\n\nimport matplotlib.pyplot as plt\nplt.plot(recalls, precisions, color=\"red\")\nplt.xlabel(\"Recall\")\nplt.ylabel(\"Precision\")\nplt.title(\"Precision-Recall Curve obtained by varying score threshold \\n score threshold is increasing from right to left\")\nplt.show()\n\n\n\n\n\n\n\n\nSimilarly, if we vary IOU threshold then we will get another precision recall curve\n\ndef compute_ap(recall, precision):\n    #from ultralytics\n    # Append sentinel values to beginning and end\n    mrec = np.concatenate(([0.0], recall, [1.0]))\n    mpre = np.concatenate(([1.0], precision, [0.0]))\n    print(f'mpre {mpre}')\n    print(f'np.flip {np.flip(mpre)}')\n    print(f'np.accumulate.maximum {np.maximum.accumulate(np.flip(mpre))}')\n    # Compute the precision envelope\n    mpre = np.flip(np.maximum.accumulate(np.flip(mpre)))\n\n    # Integrate area under curve\n    method = \"interp\"  # methods: 'continuous', 'interp'\n    if method == \"interp\":\n        x = np.linspace(0, 1, 101)  # 101-point interp (COCO)\n        ap = np.trapz(np.interp(x, mrec, mpre), x)  # integrate\n    else:  # 'continuous'\n        i = np.where(mrec[1:] != mrec[:-1])[0]  # points where x-axis (recall) changes\n        ap = np.sum((mrec[i + 1] - mrec[i]) * mpre[i + 1])  # area under curve\n\n    return ap, mpre, mrec\n\n\ndef smooth(y, f=0.05):\n    \"\"\"Box filter of fraction f.\"\"\"\n    nf = round(len(y) * f * 2) // 2 + 1  # number of filter elements (must be odd)\n    p = np.ones(nf // 2)  # ones padding\n    yp = np.concatenate((p * y[0], y, p * y[-1]), 0)  # y padded\n    return np.convolve(yp, np.ones(nf) / nf, mode=\"valid\")  # y-smoothed\n\n\ndef ap_per_class(\n    tp, conf, pred_cls, target_cls, plot=False,eps=1e-16):\n    \n    # Sort by objectness\n    i = np.argsort(-conf)\n    tp, conf, pred_cls = tp[i], conf[i], pred_cls[i] # decreasing order of  confidences\n    tp = tp.reshape((tp.shape[0],1))\n    # Find unique classes\n    unique_classes, nt = np.unique(target_cls, return_counts=True)\n    nc = unique_classes.shape[0]  # number of classes, number of detections\n\n    # Create Precision-Recall curve and compute AP for each class\n    x, prec_values = np.linspace(0, 1, 1000), []\n\n    # Average precision, precision and recall curves\n    ap, p_curve, r_curve = np.zeros((nc, tp.shape[1])), np.zeros((nc, 1000)), np.zeros((nc, 1000))\n    for ci, c in enumerate(unique_classes):\n        i = pred_cls == c\n        n_l = nt[ci]  # number of labels or ground truth\n        n_p = i.sum()  # number of predictions\n        if n_p == 0 or n_l == 0:\n            continue\n\n        # Accumulate FPs and TPs\n        fpc = (1 - tp[i]).cumsum(0) \n        tpc = tp[i].cumsum(0)\n        \n        # Recall\n        recall = tpc / (n_l + eps)  # recall curve\n        print(f'recall {recall[:,0]}')\n        # print(f'-conf[i] {-conf[i]}')\n        r_curve[ci] = np.interp(-x, -conf[i], recall[:, 0], left=0)  # negative x, xp because xp decreases\n        # print(f'r_curve[ci] {r_curve[ci]}')\n        # Precision\n        precision = tpc / (tpc + fpc)  # precision curve\n        print(f'precision {precision[:,0]}')\n        # print(f'-conf[i] {-conf[i]}')\n        p_curve[ci] = np.interp(-x, -conf[i], precision[:, 0], left=1)  # p at pr_score\n        # print(f'p_curve[ci] {p_curve[ci]}')\n        # AP from recall-precision curve\n        for j in range(tp.shape[1]):\n            ap[ci, j], mpre, mrec = compute_ap(recall[:, j], precision[:, j])\n            print(f'AP {ap[ci,j]}')\n            if plot and j == 0:\n                prec_values.append(np.interp(x, mrec, mpre))  \n\n    prec_values = np.array(prec_values)  # (nc, 1000)\n\n    # Compute F1 (harmonic mean of precision and recall)\n    f1_curve = 2 * p_curve * r_curve / (p_curve + r_curve + eps)\n\n    i = smooth(f1_curve.mean(0), 0.1).argmax()  # max F1 index\n    p, r, f1 = p_curve[:, i], r_curve[:, i], f1_curve[:, i]  # max-F1 precision, recall, F1 values\n    tp = (r * nt).round()  # true positives\n    fp = (tp / (p + eps) - tp).round()  # false positives\n    # return tp, fp, p, r, ap, f1, unique_classes.astype(int), p_curve, r_curve, f1_curve, x, prec_values\n    return 1\n\nTrue positives are decided using IOU\nclass 1 p = 1, r = 0.33 p = 0.5, r = 0.33 p = 0.66, r = 0.66\nclass 2 p = 1, r = 0.5 p = 0.5, r = 0.5\n\ntp = np.array([1,0,1,1,0])\nconf = np.array([1,1,1,1,1])\npred_cls = np.array(['1','1','1','2','2'])\ntarget_cls = np.array(['1','1','1','2','2'])\nap_per_class(tp, conf, pred_cls, target_cls, plot=False,eps=1e-16)\n\nrecall [0.33333333 0.33333333 0.66666667]\nprecision [1.         0.5        0.66666667]\nmpre [1.         1.         0.5        0.66666667 0.        ]\nnp.flip [0.         0.66666667 0.5        1.         1.        ]\nnp.accumulate.maximum [0.         0.66666667 0.66666667 1.         1.        ]\nAP 0.6672\nrecall [0.5 0.5]\nprecision [1.  0.5]\nmpre [1.  1.  0.5 0. ]\nnp.flip [0.  0.5 1.  1. ]\nnp.accumulate.maximum [0.  0.5 1.  1. ]\nAP 0.6224999999999999\n\n\n1"
+  },
+  {
     "objectID": "blogs.html",
     "href": "blogs.html",
     "title": "Blogs",
     "section": "",
-    "text": "Mean Average Precision\n\n\n\n\n\n\nobject detection\n\n\nMAP\n\n\n\nAn important metric in Object detection tasks\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nPython Format Specifier\n\n\n\n\n\n\nprecision\n\n\nformat\n\n\n\nFormatting numbers\n\n\n\n\n\nMay 9, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nImage Transformation\n\n\n\n\n\n\nimages\n\n\nopencv\n\n\n\nVarious ways to transform image\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\nNo matching items"
+    "text": "Precision and Recall\n\n\n\n\n\n\nmetrics\n\n\n\nSignificance of precision and recall\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nNon max suppression\n\n\n\n\n\n\nobject detection\n\n\nMAP\n\n\n\nNon max suppression suppresses bounding box with non max confidence scores\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nMean Average Precision\n\n\n\n\n\n\nobject detection\n\n\nMAP\n\n\n\nAn important metric in Object detection tasks\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nNon max suppression\n\n\n\n\n\n\nobject detection\n\n\nMAP\n\n\n\nNon max suppression suppresses bounding box with non max confidence scores\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nPython Format Specifier\n\n\n\n\n\n\nprecision\n\n\nformat\n\n\n\nFormatting numbers\n\n\n\n\n\nMay 9, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nImage Transformation\n\n\n\n\n\n\nimages\n\n\nopencv\n\n\n\nVarious ways to transform image\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Image-transformation.html",
@@ -70,39 +112,11 @@
     "text": "Center Crop of Image\n\n# get the image width & height\nwidth, height = img.shape[1], img.shape[0]\n\n# get the image cropped width & height\ncrop_width , crop_height = 500, 600\n\nhalf_crop_width , half_crop_height = int(crop_width/2) , int(crop_height/2)\n\nmid_x, mid_y = int(width/2), int(height/2)\n\ncenter_cropped_img=img[mid_y-half_crop_height : mid_y+half_crop_height, mid_x-half_crop_width : mid_x+half_crop_width]\n\n# disable x & y axis\nplt.axis('off')\n# show the resulting image\nplt.imshow(center_cropped_img)\nplt.show()"
   },
   {
-    "objectID": "posts/SOTA_object_detection.html",
-    "href": "posts/SOTA_object_detection.html",
-    "title": "Shataxi Dubey",
+    "objectID": "posts/object_detection_pipeline.html",
+    "href": "posts/object_detection_pipeline.html",
+    "title": "Non max suppression",
     "section": "",
-    "text": "two stage detector –&gt; one stage detector –&gt; anchor free"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Shataxi Dubey",
-    "section": "",
-    "text": "Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar.\nMy interest area lies on the intersection of Mathematics & Computer Science. It gives the power to unveil the hidden patterns and facts. I will be working on my thesis under the guidance of Prof. Nipun Batra this Spring.\nHoping to add sustainable solutions to make world better!"
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Shataxi Dubey",
-    "section": "Education",
-    "text": "Education\nB.Tech Computer Science and Engineering | University of Allahabad | Prayagraj, Uttar Pradesh | July 2018 - May 2022"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Shataxi Dubey",
-    "section": "Experience",
-    "text": "Experience\nAssociate Engineer | Indiamart Intermesh Ltd | May 2022 - July 2023"
-  },
-  {
-    "objectID": "posts/python-format-specifier.html",
-    "href": "posts/python-format-specifier.html",
-    "title": "Python Format Specifier",
-    "section": "",
-    "text": "To format a number to sum precision point using format\n\n'{:.3f}'.format(3.145667)\n\n'3.146'\n\n\n\n'{:.3f}'.format(3.1)\n\n'3.100'"
+    "text": "Object detection Pipeline"
   },
   {
     "objectID": "posts/mean_average_precision.html",
@@ -110,5 +124,12 @@
     "title": "Mean Average Precision",
     "section": "",
     "text": "https://youtu.be/FppOzcDvaDI?si=Dwv7FEAoaS9CLlGH\nIt is a graph between precision and recall for different confidence score with a paricular IOU. The precision recall curve will be different for different IOUs.\nThe area under the Precision-Recall curve is the average precision. Higher the area under curve, higher the average precision.\nAverage Precision(AP) is calculated for each class.\nMean Average Precision is calculated by taking average of the AP of two classes.\nSuppose we have two classes : Dogs and Cats\nNow, we will calculate the Precision-Recall curve for dog class. Suppose there are two images of dog in which\nthe number of ground truth boxes are : 4 the number of predicted boxes are : 2\nFor first image :\nthe number of ground truth boxes are : 1 the number of predicted boxes are : 2\nFor Second image :\nthe number of ground truth boxes are : 3 the number of predicted boxes are : 2\nSo we will start from first image with its first predicted bounding box.\nWe will check:\n\nis the predicted box has IOU greater than threshold –&gt; If yes then the predicted box is true positive\nIf No then predicted box is false positive.\n\nSuppose the first predicted box has IOU greater than threshold then\nPrecision till now : 1 divided by total predicted boxes till now which is equal to 1 , so precision is 1\nRecall till now: 1 divided by total number of ground truth boxes which is equal to 4, so recall is 0.25\nNow come to second predicted box of first image.\nSuppose the second predicted box has IOU less than threshold then\nPrecision till now : 1 divided by total predicted boxes till now which is equal to 2 , so precision is 0.5\nRecall till now: 1 divided by total number of ground truth boxes which is equal to 4, so recall is 0.25\nNext, we will go to second image.\nSuppose the first predicted box has IOU greater than threshold then\nPrecision till now : 2 divided by total predicted boxes till now which is equal to 3 , so precision is 0.66 (Why true positives are 2 because we have total correctly predicted boxes till now equal to 2)\nRecall till now: 2 divided by total number of ground truth boxes which is equal to 4, so recall is 0.5\nNow come to second predicted box of second image.\nSuppose the second predicted box has IOU less than threshold then\nPrecision till now : 2 divided by total predicted boxes till now which is equal to 4 , so precision is 0.5\nRecall till now: 2 divided by total number of ground truth boxes which is equal to 4, so recall is 0.5\nNow for plotting the P-R curve, we need all precision values: 1, 0.5, 0.66, 0.5 and all recall values: 0.25, 0.25, 0.5, 0.5\nThis will plot the curve for a particular IOU threshold. Now calculate the area under the curve, which will give the average precision at a particular threshold for Dog class.\nSimilarly, we can do for Cat class and can get the average precision.\nTo get the ean average precision, we take the average of the Average precision of the two classes."
+  },
+  {
+    "objectID": "posts/python-format-specifier.html",
+    "href": "posts/python-format-specifier.html",
+    "title": "Python Format Specifier",
+    "section": "",
+    "text": "To format a number to sum precision point using format\n\n'{:.3f}'.format(3.145667)\n\n'3.146'\n\n\n\n'{:.3f}'.format(3.1)\n\n'3.100'"
   }
 ]
