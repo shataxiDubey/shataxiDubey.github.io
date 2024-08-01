@@ -93,7 +93,7 @@
   {
     "objectID": "posts/SOTA_object_detection.html",
     "href": "posts/SOTA_object_detection.html",
-    "title": "Shataxi Dubey",
+    "title": "Evolution in object detection",
     "section": "",
     "text": "two stage detector –&gt; one stage detector –&gt; anchor free"
   },
@@ -102,7 +102,7 @@
     "href": "blogs.html",
     "title": "Blogs",
     "section": "",
-    "text": "Non max suppression\n\n\n\n\n\n\nobject detection\n\n\nnms\n\n\n\nNon max suppression suppresses bounding box with non max confidence scores\n\n\n\n\n\nAug 1, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nPrecision and Recall\n\n\n\n\n\n\nmetrics\n\n\n\nSignificance of precision and recall\n\n\n\n\n\nAug 1, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nObject detection pipeline\n\n\n\n\n\n\nobject detection\n\n\n\nObject detection pipeline\n\n\n\n\n\nAug 1, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nMean Average Precision\n\n\n\n\n\n\nobject detection\n\n\nMAP\n\n\n\nAn important metric in Object detection tasks\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nPython Format Specifier\n\n\n\n\n\n\nprecision\n\n\nformat\n\n\n\nFormatting numbers\n\n\n\n\n\nMay 9, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nImage Transformation\n\n\n\n\n\n\nimages\n\n\nopencv\n\n\n\nVarious ways to transform image\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\nNo matching items"
+    "text": "Non max suppression\n\n\n\n\n\n\nobject detection\n\n\nnms\n\n\n\nNon max suppression suppresses bounding box with non max confidence scores\n\n\n\n\n\nAug 1, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nPrecision and Recall\n\n\n\n\n\n\nmetrics\n\n\n\nSignificance of precision and recall\n\n\n\n\n\nAug 1, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nObject detection pipeline\n\n\n\n\n\n\nobject detection\n\n\n\nObject detection pipeline\n\n\n\n\n\nAug 1, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nEvolution in object detection\n\n\n\n\n\n\nobject detection\n\n\nSOTA\n\n\n\nstate of the art models\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nMean Average Precision\n\n\n\n\n\n\nobject detection\n\n\nMAP\n\n\n\nAn important metric in Object detection tasks\n\n\n\n\n\nMay 23, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nPython Format Specifier\n\n\n\n\n\n\nprecision\n\n\nformat\n\n\n\nFormatting numbers\n\n\n\n\n\nMay 9, 2024\n\n\nShataxi Dubey\n\n\n\n\n\n\n\n\n\n\n\n\nImage Transformation\n\n\n\n\n\n\nimages\n\n\nopencv\n\n\n\nVarious ways to transform image\n\n\n\n\n\nDec 24, 2023\n\n\nShataxi Dubey\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/non_max_suppression.html",
