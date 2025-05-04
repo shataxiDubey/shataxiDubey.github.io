@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shataxiDubey.github.io/blogs.html</loc>
-    <lastmod>2025-04-06T20:18:25.033Z</lastmod>
+    <loc>https://shataxiDubey.github.io/index.html</loc>
+    <lastmod>2025-05-04T17:43:44.098Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/non_max_suppression.html</loc>
-    <lastmod>2025-04-06T20:18:25.050Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/object_detection_pipeline.html</loc>
-    <lastmod>2025-04-06T20:18:25.050Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
-    <lastmod>2025-04-06T20:18:25.049Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/index.html</loc>
-    <lastmod>2025-04-06T20:18:25.035Z</lastmod>
+    <lastmod>2025-05-04T17:43:44.113Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/mean_average_precision.html</loc>
-    <lastmod>2025-04-06T20:18:25.050Z</lastmod>
+    <lastmod>2025-05-04T17:43:44.113Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/object_detection_pipeline.html</loc>
+    <lastmod>2025-05-04T17:43:44.113Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/python-format-specifier.html</loc>
-    <lastmod>2025-04-06T20:18:25.050Z</lastmod>
+    <lastmod>2025-05-04T17:43:44.114Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/precision_recall.html</loc>
-    <lastmod>2025-04-06T20:18:25.050Z</lastmod>
+    <lastmod>2025-05-04T17:43:44.114Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/Image-transformation.html</loc>
-    <lastmod>2025-04-06T20:18:25.049Z</lastmod>
+    <lastmod>2025-05-04T17:43:44.113Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
+    <lastmod>2025-05-04T17:43:44.113Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/blogs.html</loc>
+    <lastmod>2025-05-04T17:43:44.096Z</lastmod>
   </url>
 </urlset>

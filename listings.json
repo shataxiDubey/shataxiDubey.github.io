@@ -2,8 +2,8 @@
   {
     "listing": "/blogs.html",
     "items": [
-      "/posts/object_detection_pipeline.html",
       "/posts/precision_recall.html",
+      "/posts/object_detection_pipeline.html",
       "/posts/non_max_suppression.html",
       "/posts/mean_average_precision.html",
       "/posts/SOTA_object_detection.html",
