@@ -2,12 +2,13 @@
   {
     "listing": "/blogs.html",
     "items": [
+      "/posts/ReLU_activation.html",
       "/posts/vlm_sizes.html",
       "/posts/object_detection_pipeline.html",
-      "/posts/non_max_suppression.html",
       "/posts/precision_recall.html",
-      "/posts/mean_average_precision.html",
+      "/posts/non_max_suppression.html",
       "/posts/SOTA_object_detection.html",
+      "/posts/mean_average_precision.html",
       "/posts/python-format-specifier.html",
       "/posts/Image-transformation.html"
     ]
