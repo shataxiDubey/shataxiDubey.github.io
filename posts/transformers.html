@@ -371,11 +371,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="images\tokenization_and_mead_dimension.png" class="img-fluid"></p>
-<p><img src="images\query_key_value_matrix.png" class="img-fluid"></p>
-<p><img src="images\Value_matrix_transpose.png" class="img-fluid"></p>
-<p><img src="images\value_matrix_modified.png" class="img-fluid"></p>
-<p><img src="images\final_value_matrix.png" class="img-fluid"></p>
+<p><img src="images/tokenization_and_mead_dimension.png" class="img-fluid"></p>
+<p><img src="images/query_key_value_matrix.png" class="img-fluid"></p>
+<p><img src="images/Value_matrix_transpose.png" class="img-fluid"></p>
+<p><img src="images/value_matrix_modified.png" class="img-fluid"></p>
+<p><img src="images/final_value_matrix.png" class="img-fluid"></p>
 <div id="e434104f" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SelfAttention(nn.Module):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, embed_size, heads): <span class="co"># why are we dividing the embed_size among heads</span></span>
