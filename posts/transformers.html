@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Shataxi Dubey">
+<meta name="dcterms.date" content="2025-05-28">
+<meta name="description" content="Building transformers from scratch">
 
-<title>Blogs – Shataxi Dubey</title>
+<title>Transformers – Shataxi Dubey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,32 +23,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d1029c8c0624b678ec1882d5dbfbed62.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-cac345f7a8bb4b4fc95c713cf5862a9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d1029c8c0624b678ec1882d5dbfbed62.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d1029c8c0624b678ec1882d5dbfbed62.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cac345f7a8bb4b4fc95c713cf5862a9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d1029c8c0624b678ec1882d5dbfbed62.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,67 +109,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -301,11 +279,11 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Shataxi Dubey</span>
     </a>
   </div>
@@ -316,15 +294,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blogs.html" aria-current="page"> 
+    <a class="nav-link" href="../blogs.html"> 
 <span class="menu-text">Blogs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./SHATAXI_DUBEY_CV.pdf"> 
+    <a class="nav-link" href="../SHATAXI_DUBEY_CV.pdf"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -337,364 +315,262 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Transformers</h1>
+                  <div>
+        <div class="description">
+          Building transformers from scratch
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Self attention</div>
+                <div class="quarto-category">masked attention</div>
+                <div class="quarto-category">multi head attention</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Shataxi Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 28, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="Zm9ybWF0">format <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1hZ2Vz">images <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZWFyaXR5">Linearity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9yYQ==">lora <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFQ">MAP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFza2VkJTIwYXR0ZW50aW9u">masked attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0cmljcw==">metrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u">multi head attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm1z">nms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b2JqZWN0JTIwZGV0ZWN0aW9u">object detection <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b3BlbmN2">opencv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlY2lzaW9u">precision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbnRpemF0aW9u">quantization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVMVQ==">ReLU <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VsZiUyMGF0dGVudGlvbg==">Self attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09UQQ==">SOTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmxt">vlm <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Blogs</h1>
+
+
+
+
+<div id="d547ba56" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-
-
-
-<div class="quarto-title-meta column-page-left">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UmVMVSUyQ0xpbmVhcml0eQ==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1751428261032" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
-<div class="thumbnail"><a href="./posts/ReLU_activation.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/ReLU_activation_files/figure-html/cell-19-output-3.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/ReLU_activation.html" class="no-external">ReLU Activation Functions</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVMVQ=='); return false;">ReLU</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGluZWFyaXR5'); return false;">Linearity</div>
-
+<p><img src="images\tokenization_and_mead_dimension.png" class="img-fluid"></p>
+<p><img src="images\query_key_value_matrix.png" class="img-fluid"></p>
+<p><img src="images\Value_matrix_transpose.png" class="img-fluid"></p>
+<p><img src="images\value_matrix_modified.png" class="img-fluid"></p>
+<p><img src="images\final_value_matrix.png" class="img-fluid"></p>
+<div id="e434104f" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SelfAttention(nn.Module):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, embed_size, heads): <span class="co"># why are we dividing the embed_size among heads</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.embed_size <span class="op">=</span> embed_size</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.heads <span class="op">=</span> heads</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.head_dim <span class="op">=</span> embed_size <span class="op">//</span> heads</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_k <span class="op">=</span> nn.Linear(<span class="va">self</span>.embed_size, <span class="va">self</span>.embed_size) <span class="co"># every time the input to the query, key and value matrix will be a vector of dimension embed_size and it will brought down to head_dim</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_q <span class="op">=</span> nn.Linear(<span class="va">self</span>.embed_size, <span class="va">self</span>.embed_size)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W_v <span class="op">=</span> nn.Linear(<span class="va">self</span>.embed_size, <span class="va">self</span>.embed_size)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(<span class="va">self</span>.heads<span class="op">*</span><span class="va">self</span>.head_dim, <span class="va">self</span>.embed_size)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The query, key and value have tokens and each token is of size embed_size.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Suppose, there are 100 tokens in a query, each token is 512-dimensional.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The embed_size is divided among heads. Suppose the number of heads is 8.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The 512-dimensional token is divided among heads. Each head has 64-dimensional query</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># One query has 100 tokens</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># One token is 512-dimensional. Embed size is 512-dimensional.</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Each head has 64-dimensional token.</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (N, 100, 512) is the input taken by Linear layer W_q and then the output is reshaped into (N, 100, 8, 64)</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, query, key, value):</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> query.shape[<span class="dv">0</span>]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        query_len, key_len, value_len <span class="op">=</span> query.shape[<span class="dv">1</span>], key.shape[<span class="dv">1</span>], value.shape[<span class="dv">1</span>] <span class="co"># here we find out how many tokens are present in query, key and value</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        query <span class="op">=</span> <span class="va">self</span>.W_q(query)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        key <span class="op">=</span> <span class="va">self</span>.W_k(key)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> <span class="va">self</span>.W_v(value)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># reshape the query, key and value such that each head has query dimension, key dimension and value dimension equal to head_dimension.</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        query <span class="op">=</span> query.reshape(N, query_len, <span class="va">self</span>.heads, <span class="va">self</span>.head_dim)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        key <span class="op">=</span> key.reshape(N, key_len, <span class="va">self</span>.heads, <span class="va">self</span>.head_dim)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> value.reshape(N, value_len, <span class="va">self</span>.heads, <span class="va">self</span>.head_dim)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="delink listing-description"><a href="./posts/ReLU_activation.html" class="no-external">
-<p>Non Linearity using ReLU activation function</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/ReLU_activation.html" class="no-external">
-<div class="listing-date">
-Jun 26, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="U2VsZiUyMGF0dGVudGlvbiUyQ21hc2tlZCUyMGF0dGVudGlvbiUyQ211bHRpJTIwaGVhZCUyMGF0dGVudGlvbg==" data-listing-date-sort="1748390400000" data-listing-file-modified-sort="1751428261039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/transformers.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/images\tokenization_and_mead_dimension.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/transformers.html" class="no-external">Transformers</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VsZiUyMGF0dGVudGlvbg=='); return false;">Self attention</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWFza2VkJTIwYXR0ZW50aW9u'); return false;">masked attention</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u'); return false;">multi head attention</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/transformers.html" class="no-external">
-<p>Building transformers from scratch</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/transformers.html" class="no-external">
-<div class="listing-date">
-May 28, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
+<div id="1f930db7" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> torch.arange(<span class="dv">1</span>, <span class="dv">17</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> torch.arange(<span class="dv">100</span>,<span class="dv">116</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> A.reshape((<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> B.reshape((<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'ij,kj-&gt;ik'</span>, A,B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>tensor([[1080, 1090, 1100, 1110],
+        [2776, 2802, 2828, 2854],
+        [4472, 4514, 4556, 4598],
+        [6168, 6226, 6284, 6342]])</code></pre>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="dmxtJTJDbG9yYSUyQ3F1YW50aXphdGlvbg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1751428261040" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/vlm_sizes.html" class="no-external">
+<div id="13dc58b3" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'ij,jk'</span>, A,B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>tensor([[1080, 1090, 1100, 1110],
+        [2776, 2802, 2828, 2854],
+        [4472, 4514, 4556, 4598],
+        [6168, 6226, 6284, 6342]])</code></pre>
+</div>
+</div>
+<div id="b8eec254" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A,B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>tensor([[1080, 1090, 1100, 1110],
+        [2776, 2802, 2828, 2854],
+        [4472, 4514, 4556, 4598],
+        [6168, 6226, 6284, 6342]])</code></pre>
+</div>
+</div>
+<div id="ff8750b5" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">@</span>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>tensor([[1080, 1090, 1100, 1110],
+        [2776, 2802, 2828, 2854],
+        [4472, 4514, 4556, 4598],
+        [6168, 6226, 6284, 6342]])</code></pre>
+</div>
+</div>
+<div id="7bca1d88" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'ij,kj-&gt;ikj'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>tensor([[[ 100,  202,  306,  412],
+         [ 104,  210,  318,  428],
+         [ 108,  218,  330,  444],
+         [ 112,  226,  342,  460]],
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+        [[ 500,  606,  714,  824],
+         [ 520,  630,  742,  856],
+         [ 540,  654,  770,  888],
+         [ 560,  678,  798,  920]],
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/vlm_sizes.html" class="no-external">Vision Language Models</a>
-</h3>
-<div class="listing-categories">
+        [[ 900, 1010, 1122, 1236],
+         [ 936, 1050, 1166, 1284],
+         [ 972, 1090, 1210, 1332],
+         [1008, 1130, 1254, 1380]],
 
-<div class="listing-category" onclick="window.quartoListingCategory('dmxt'); return false;">vlm</div>
+        [[1300, 1414, 1530, 1648],
+         [1352, 1470, 1590, 1712],
+         [1404, 1526, 1650, 1776],
+         [1456, 1582, 1710, 1840]]])</code></pre>
+</div>
+</div>
+<div id="273f3527" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'ij,kl-&gt;ijkl'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>tensor([[[[ 100,  101,  102,  103],
+          [ 104,  105,  106,  107],
+          [ 108,  109,  110,  111],
+          [ 112,  113,  114,  115]],
 
-<div class="listing-category" onclick="window.quartoListingCategory('bG9yYQ=='); return false;">lora</div>
+         [[ 200,  202,  204,  206],
+          [ 208,  210,  212,  214],
+          [ 216,  218,  220,  222],
+          [ 224,  226,  228,  230]],
 
-<div class="listing-category" onclick="window.quartoListingCategory('cXVhbnRpemF0aW9u'); return false;">quantization</div>
+         [[ 300,  303,  306,  309],
+          [ 312,  315,  318,  321],
+          [ 324,  327,  330,  333],
+          [ 336,  339,  342,  345]],
 
-</div>
-<div class="delink listing-description"><a href="./posts/vlm_sizes.html" class="no-external">
-<p>Vision Language Models and Lora adapters with quantization</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/vlm_sizes.html" class="no-external">
-<div class="listing-date">
-May 23, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9u" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1751428261039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
-<div class="thumbnail"><a href="./posts/object_detection_pipeline.html" class="no-external">
+         [[ 400,  404,  408,  412],
+          [ 416,  420,  424,  428],
+          [ 432,  436,  440,  444],
+          [ 448,  452,  456,  460]]],
 
-<p class="card-img-top"><img src="posts/object_detection.drawio.png"  class="thumbnail-image card-img"/></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/object_detection_pipeline.html" class="no-external">Object detection pipeline</a>
-</h3>
-<div class="listing-categories">
+        [[[ 500,  505,  510,  515],
+          [ 520,  525,  530,  535],
+          [ 540,  545,  550,  555],
+          [ 560,  565,  570,  575]],
 
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
+         [[ 600,  606,  612,  618],
+          [ 624,  630,  636,  642],
+          [ 648,  654,  660,  666],
+          [ 672,  678,  684,  690]],
 
-</div>
-<div class="delink listing-description"><a href="./posts/object_detection_pipeline.html" class="no-external">
-<p>Object detection pipeline</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/object_detection_pipeline.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="bWV0cmljcw==" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1751428261039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="155">
-<div class="thumbnail"><a href="./posts/precision_recall.html" class="no-external">
+         [[ 700,  707,  714,  721],
+          [ 728,  735,  742,  749],
+          [ 756,  763,  770,  777],
+          [ 784,  791,  798,  805]],
 
-<p class="card-img-top"><img src="posts/precision_recall_files/figure-html/cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
+         [[ 800,  808,  816,  824],
+          [ 832,  840,  848,  856],
+          [ 864,  872,  880,  888],
+          [ 896,  904,  912,  920]]],
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/precision_recall.html" class="no-external">Precision and Recall</a>
-</h3>
-<div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('bWV0cmljcw=='); return false;">metrics</div>
+        [[[ 900,  909,  918,  927],
+          [ 936,  945,  954,  963],
+          [ 972,  981,  990,  999],
+          [1008, 1017, 1026, 1035]],
 
-</div>
-<div class="delink listing-description"><a href="./posts/precision_recall.html" class="no-external">
-<p>Significance of precision and recall</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/precision_recall.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDbm1z" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1751428261038" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
-<div class="thumbnail"><a href="./posts/non_max_suppression.html" class="no-external">
+         [[1000, 1010, 1020, 1030],
+          [1040, 1050, 1060, 1070],
+          [1080, 1090, 1100, 1110],
+          [1120, 1130, 1140, 1150]],
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+         [[1100, 1111, 1122, 1133],
+          [1144, 1155, 1166, 1177],
+          [1188, 1199, 1210, 1221],
+          [1232, 1243, 1254, 1265]],
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/non_max_suppression.html" class="no-external">Non max suppression</a>
-</h3>
-<div class="listing-categories">
+         [[1200, 1212, 1224, 1236],
+          [1248, 1260, 1272, 1284],
+          [1296, 1308, 1320, 1332],
+          [1344, 1356, 1368, 1380]]],
 
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('bm1z'); return false;">nms</div>
+        [[[1300, 1313, 1326, 1339],
+          [1352, 1365, 1378, 1391],
+          [1404, 1417, 1430, 1443],
+          [1456, 1469, 1482, 1495]],
 
-</div>
-<div class="delink listing-description"><a href="./posts/non_max_suppression.html" class="no-external">
-<p>Non max suppression suppresses bounding box with non max confidence scores</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/non_max_suppression.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDU09UQQ==" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1751428261032" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<div class="thumbnail"><a href="./posts/SOTA_object_detection.html" class="no-external">
+         [[1400, 1414, 1428, 1442],
+          [1456, 1470, 1484, 1498],
+          [1512, 1526, 1540, 1554],
+          [1568, 1582, 1596, 1610]],
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+         [[1500, 1515, 1530, 1545],
+          [1560, 1575, 1590, 1605],
+          [1620, 1635, 1650, 1665],
+          [1680, 1695, 1710, 1725]],
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/SOTA_object_detection.html" class="no-external">Evolution in object detection</a>
-</h3>
-<div class="listing-categories">
+         [[1600, 1616, 1632, 1648],
+          [1664, 1680, 1696, 1712],
+          [1728, 1744, 1760, 1776],
+          [1792, 1808, 1824, 1840]]]])</code></pre>
+</div>
+</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('U09UQQ=='); return false;">SOTA</div>
 
-</div>
-<div class="delink listing-description"><a href="./posts/SOTA_object_detection.html" class="no-external">
-<p>state of the art models</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/SOTA_object_detection.html" class="no-external">
-<div class="listing-date">
-May 23, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDTUFQ" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1751428261038" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
-<div class="thumbnail"><a href="./posts/mean_average_precision.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/mean_average_precision.html" class="no-external">Mean Average Precision</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUFQ'); return false;">MAP</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/mean_average_precision.html" class="no-external">
-<p>An important metric in Object detection tasks</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/mean_average_precision.html" class="no-external">
-<div class="listing-date">
-May 23, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="cHJlY2lzaW9uJTJDZm9ybWF0" data-listing-date-sort="1715212800000" data-listing-file-modified-sort="1751428261039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<div class="thumbnail"><a href="./posts/python-format-specifier.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/python-format-specifier.html" class="no-external">Python Format Specifier</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHJlY2lzaW9u'); return false;">precision</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Zm9ybWF0'); return false;">format</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/python-format-specifier.html" class="no-external">
-<p>Formatting numbers</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/python-format-specifier.html" class="no-external">
-<div class="listing-date">
-May 9, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="aW1hZ2VzJTJDb3BlbmN2" data-listing-date-sort="1703376000000" data-listing-file-modified-sort="1751428261031" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<div class="thumbnail"><a href="./posts/Image-transformation.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/Image-transformation_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Image-transformation.html" class="no-external">Image Transformation</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('aW1hZ2Vz'); return false;">images</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('b3BlbmN2'); return false;">opencv</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Image-transformation.html" class="no-external">
-<p>Various ways to transform image</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Image-transformation.html" class="no-external">
-<div class="listing-date">
-Dec 24, 2023
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

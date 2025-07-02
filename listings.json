@@ -3,6 +3,7 @@
     "listing": "/blogs.html",
     "items": [
       "/posts/ReLU_activation.html",
+      "/posts/transformers.html",
       "/posts/vlm_sizes.html",
       "/posts/object_detection_pipeline.html",
       "/posts/precision_recall.html",
