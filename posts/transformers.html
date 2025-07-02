@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shataxi Dubey">
-<meta name="dcterms.date" content="2025-05-28">
+<meta name="dcterms.date" content="2025-07-01">
 <meta name="description" content="Building transformers from scratch">
 
 <title>Transformers – Shataxi Dubey</title>
@@ -345,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 28, 2025</p>
+        <p class="date">July 1, 2025</p>
       </div>
     </div>
     
@@ -367,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="d547ba56" class="cell" data-execution_count="1">
+<div id="d547ba56" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -389,17 +389,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(<span class="va">self</span>.heads<span class="op">*</span><span class="va">self</span>.head_dim, <span class="va">self</span>.embed_size)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The query, key and value have tokens and each token is of size embed_size.</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Suppose, there are 100 tokens in a query, each token is 512-dimensional.</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The embed_size is divided among heads. Suppose the number of heads is 8.</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The 512-dimensional token is divided among heads. Each head has 64-dimensional query</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The query, key and value have tokens and each token is of size embed_size.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Suppose, there are 100 tokens in a query, each token is 512-dimensional.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The embed_size is divided among heads. Suppose the number of heads is 8.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The 512-dimensional token is divided among heads. Each head has 64-dimensional query</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># One query has 100 tokens</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># One token is 512-dimensional. Embed size is 512-dimensional.</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Each head has 64-dimensional token.</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (N, 100, 512) is the input taken by Linear layer W_q and then the output is reshaped into (N, 100, 8, 64)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># One query has 100 tokens</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># One token is 512-dimensional. Embed size is 512-dimensional.</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Each head has 64-dimensional token.</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (N, 100, 512) is the input taken by Linear layer W_q and then the output is reshaped into (N, 100, 8, 64)</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, query, key, value):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, query, key, value, mask):</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> query.shape[<span class="dv">0</span>]</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        query_len, key_len, value_len <span class="op">=</span> query.shape[<span class="dv">1</span>], key.shape[<span class="dv">1</span>], value.shape[<span class="dv">1</span>] <span class="co"># here we find out how many tokens are present in query, key and value</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        </span>
@@ -412,9 +412,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        key <span class="op">=</span> key.reshape(N, key_len, <span class="va">self</span>.heads, <span class="va">self</span>.head_dim)</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> value.reshape(N, value_len, <span class="va">self</span>.heads, <span class="va">self</span>.head_dim)</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># calculate attention scores QK.T </span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Remember: While using einsum, you only need to specify the ranks of input matrices and the output matrix, the internal computation is handled accordingly.</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        attention_scores <span class="op">=</span> torch.einsum(<span class="st">'nqhd, nkhd-&gt; nhqk'</span>, [query, key])</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the input sentences are of same length even if some sentences have fewer words.</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Suppose Sentence 1 has 5 words and Sentence 2 has 11 words. </span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Padding is done in sentence 1 with 6 tokens so that sentence 1 and sentence 2 has same length</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># In reality, the padded 6 tokens in sentence 1 are meaningless so we require a mask to tell which tokens are real and which are not.</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Hence for sentence 1 the mask will be [1,1,1,1,1,0,0,0,0,0,0]</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For sentence 2, the mask will be [1,1,1,1,1,1,1,1,1,1,1]</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Final mask = [[1,1,1,1,1,0,0,0,0,0,0],</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">#               [1,1,1,1,1,1,1,1,1,1,1]]</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># As the non-real tokens add no value to sentence, computing attention scores on these non-real tokens is of no use.</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Hence we replace the attention scores calculated from these non-real tokens to large negative values.</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># On applying softmax to these large negative values, the final attention weight will be zero. </span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This satisfies our goal to not have any attention from non-real tokens.</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mask <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>            attention_scores <span class="op">=</span> attention_scores.masked_fill(mask <span class="op">==</span> <span class="dv">0</span>, <span class="op">-</span><span class="fl">1e-20</span>)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># attention weight = softmax(QK.T/sqrt(dk)) here dk is the dimension of the query which is equal to head dim </span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        attention_weights <span class="op">=</span> torch.softmax((attention_scores)<span class="op">/</span>(<span class="va">self</span>.head_dim <span class="op">**</span> <span class="fl">0.5</span>), dim <span class="op">=</span> <span class="dv">3</span>)  </span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># dimension of attention_values : (N, heads, query_len, key_len)</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># multiply attention values with value vector then reshaping to concatenate all 64-dimensional value vectors of all heads into 512-d value vector</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> torch.einsum(<span class="st">'nhqk, nkhd -&gt; nqhd'</span>, [attention_weights, value]).reshape(N, query_len, <span class="va">self</span>.heads<span class="op">*</span><span class="va">self</span>.head_dim)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pass the 512-dimensional value vector through the linear layer</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.fc(out)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1f930db7" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> torch.arange(<span class="dv">1</span>, <span class="dv">17</span>)</span>
