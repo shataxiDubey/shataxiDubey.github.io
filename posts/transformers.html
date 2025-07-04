@@ -654,10 +654,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Transformer(src_pad_idx, source_vocab_size, target_vocab_size, max_len, embed_size, heads, num_layers, dropout)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> model(source_input, target_input[:, :<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Input to the Decoder is the target sentence [‘Mai’, ‘school’, ‘jaa’, ‘raha’, ‘hu’]</p>
-<p>The input is token indices: [1,2,3,4,5,6,7,1,0,0] but tokens are right shifted so the input will be [1,2,3,4,5,6,7,1,0]</p>
-<p>There are 9 tokens in the query, key and value.</p>
-<p>Attention score is calculated between the 9 tokens of query and 9 tokens of the key. Attention score matrix is of size 9 x 9 .</p>
 <p><img src="images/decoder_self_attention_computation.png" class="img-fluid"></p>
 <div id="3cf5580c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
