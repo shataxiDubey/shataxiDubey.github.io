@@ -367,6 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="here-i-have-implemented-the-transformer-architecture-from-scratch-with-a-focus-on-forward-pass.-this-will-help-understand-how-the-inputs-flow-through-each-module.-note-that-backpropagation-code-is-not-implemented." class="level4">
+<h4 class="anchored" data-anchor-id="here-i-have-implemented-the-transformer-architecture-from-scratch-with-a-focus-on-forward-pass.-this-will-help-understand-how-the-inputs-flow-through-each-module.-note-that-backpropagation-code-is-not-implemented.">Here I have implemented the transformer architecture from scratch with a focus on forward pass. This will help understand how the inputs flow through each module. Note that backpropagation code is not implemented.</h4>
 <div id="d547ba56" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,6 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Initally, the position of the tokens is [0,1,2,3].</p>
 <p>The embedding layer takes [0,1,2,3] as input and then the weights learnt tell at what position token ‘I’ should appear in any new sentence.</p>
 <p>The model learns that certain words tend to appear in certain positions, not because we tell it where they should appear, but because it observes this from training data using the combination of token + positional embeddings.</p>
+</section>
 <section id="lets-build-the-decoder-block" class="level4">
 <h4 class="anchored" data-anchor-id="lets-build-the-decoder-block">Lets build the decoder block</h4>
 <p><img src="images/decoder_block.png" class="img-fluid"></p>
