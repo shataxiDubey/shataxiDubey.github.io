@@ -14,15 +14,16 @@ about:
 
 ---
 
-Hi! I am Shataxi Dubey an M.Tech Computer Science & Engineering student at Indian Institute of Technology Gandhinagar.
+Hi! I am Shataxi Dubey, AI/ML Engineer I at SmartSense Consulting Solutions.
 
-My interest area lies in Machine Learning and Computer Vision. 
-Currently exploring the Earth through satellite imagery to unveil the hidden patterns and facts.
-I am working on my thesis Brick Kiln detection from Satellite Imagery using Vision Language Models under the guidance of [Prof. Nipun Batra](https://nipunbatra.github.io). 
+My interest area lies in Machine Learning, Computer Vision and Vision Language Models.
 
-Hoping to add sustainable solutions to make world better!
 
 ## Education
+
+M.Tech Computer Science and Engineering |
+Indian Institute of Technology Gandhinagar | Gandhinagar, Gujarat |
+ July 2023 - May 2025
 
 B.Tech Computer Science and Engineering |
 University of Allahabad | Prayagraj, Uttar Pradesh |
