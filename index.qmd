@@ -14,9 +14,13 @@ about:
 
 ---
 
-Hi! I am Shataxi Dubey, AI/ML Engineer I at SmartSense Consulting Solutions.
+Hi, I am Shataxi Dubey — an AI/ML Engineer at SmartSense Consulting Solutions, passionate about building intelligent systems that see and understand the world.
 
-My interest area lies in Machine Learning, Computer Vision and Vision Language Models.
+My interest lies in Machine Learning, Computer Vision, and Vision-Language Models (VLMs). During my Master’s thesis, I explored how VLMs can be applied to satellite imagery — a challenging and high-impact domain. Before diving into VLMs, I focused on using models like Faster R-CNN and YOLO to detect brick kilns in satellite images, aiming to address their role as a major source of air pollution.
+
+These days, I am deepening my understanding of how VLMs are designed, trained, and adapted — and how they can be leveraged for versatile tasks, including object detection and beyond.
+
+
 
 
 ## Education
@@ -31,6 +35,8 @@ University of Allahabad | Prayagraj, Uttar Pradesh |
 
 
 ## Experience
+
+AI/ML Engineer I | SmartSense Consulting Solutions | August 2025 - Present
 
 Associate Engineer | 
 Indiamart Intermesh Ltd | May 2022 - July 2023
