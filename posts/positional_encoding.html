@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Shataxi Dubey">
+<meta name="dcterms.date" content="2025-07-22">
+<meta name="description" content="Positional encoding used for encoding where the tokens appear in a sentence">
 
-<title>Blogs – Shataxi Dubey</title>
+<title>Positional Encoding in transformers – Shataxi Dubey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,32 +23,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4eb7e2958a5e015016747e776a672dcd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4eb7e2958a5e015016747e776a672dcd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,35 +109,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -133,7 +140,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -301,11 +308,11 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Shataxi Dubey</span>
     </a>
   </div>
@@ -316,15 +323,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blogs.html" aria-current="page"> 
+    <a class="nav-link" href="../blogs.html"> 
 <span class="menu-text">Blogs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./SHATAXI_DUBEY_CV.pdf"> 
+    <a class="nav-link" href="../SHATAXI_DUBEY_CV.pdf"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -337,428 +344,181 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Positional Encoding in transformers</h1>
+                  <div>
+        <div class="description">
+          Positional encoding used for encoding where the tokens appear in a sentence
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">positional encoding</div>
+                <div class="quarto-category">transformers</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Shataxi Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 22, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="Zm9ybWF0">format <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2F0ZXM=">gates <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1hZ2Vz">images <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZWFyaXR5">Linearity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9yYQ==">lora <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bHN0bQ==">lstm <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFQ">MAP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFza2VkJTIwYXR0ZW50aW9u">masked attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0cmljcw==">metrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u">multi head attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm1z">nms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b2JqZWN0JTIwZGV0ZWN0aW9u">object detection <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b3BlbmN2">opencv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9zaXRpb25hbCUyMGVuY29kaW5n">positional encoding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlY2lzaW9u">precision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbnRpemF0aW9u">quantization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVMVQ==">ReLU <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VsZiUyMGF0dGVudGlvbg==">Self attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09UQQ==">SOTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHJhbnNmb3JtZXJz">transformers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmxt">vlm <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#positional-embedding" id="toc-positional-embedding" class="nav-link active" data-scroll-target="#positional-embedding">Positional embedding</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Blogs</h1>
-</div>
-
-
-
-<div class="quarto-title-meta column-page-left">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cG9zaXRpb25hbCUyMGVuY29kaW5nJTJDdHJhbnNmb3JtZXJz" data-listing-date-sort="1753142400000" data-listing-file-modified-sort="1753170998401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="410">
-<div class="thumbnail"><a href="./posts/positional_encoding.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/positional_encoding_files/figure-html/cell-4-output-2.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/positional_encoding.html" class="no-external">Positional Encoding in transformers</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cG9zaXRpb25hbCUyMGVuY29kaW5n'); return false;">positional encoding</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dHJhbnNmb3JtZXJz'); return false;">transformers</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/positional_encoding.html" class="no-external">
-<p>Positional encoding used for encoding where the tokens appear in a sentence</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/positional_encoding.html" class="no-external">
-<div class="listing-date">
-Jul 22, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="bHN0bSUyQ2dhdGVz" data-listing-date-sort="1752537600000" data-listing-file-modified-sort="1753170998387" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="167">
-<div class="thumbnail"><a href="./posts/LSTM.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/images/lstm_gates.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/LSTM.html" class="no-external">Long Short Term Memory</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bHN0bQ=='); return false;">lstm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2F0ZXM='); return false;">gates</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/LSTM.html" class="no-external">
-<p>A recurrent neural network with gates</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/LSTM.html" class="no-external">
-<div class="listing-date">
-Jul 15, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="U2VsZiUyMGF0dGVudGlvbiUyQ21hc2tlZCUyMGF0dGVudGlvbiUyQ211bHRpJTIwaGVhZCUyMGF0dGVudGlvbg==" data-listing-date-sort="1751328000000" data-listing-file-modified-sort="1753170998402" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609">
-<div class="thumbnail"><a href="./posts/transformers.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/images/tokenization_and_mead_dimension.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/transformers.html" class="no-external">Transformers</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2VsZiUyMGF0dGVudGlvbg=='); return false;">Self attention</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWFza2VkJTIwYXR0ZW50aW9u'); return false;">masked attention</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u'); return false;">multi head attention</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/transformers.html" class="no-external">
-<p>Building transformers from scratch</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/transformers.html" class="no-external">
-<div class="listing-date">
-Jul 1, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UmVMVSUyQ0xpbmVhcml0eQ==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1753170998387" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
-<div class="thumbnail"><a href="./posts/ReLU_activation.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/ReLU_activation_files/figure-html/cell-19-output-3.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/ReLU_activation.html" class="no-external">ReLU Activation Functions</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVMVQ=='); return false;">ReLU</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGluZWFyaXR5'); return false;">Linearity</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/ReLU_activation.html" class="no-external">
-<p>Non Linearity using ReLU activation function</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/ReLU_activation.html" class="no-external">
-<div class="listing-date">
-Jun 26, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="dmxtJTJDbG9yYSUyQ3F1YW50aXphdGlvbg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1753170998402" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail"><a href="./posts/vlm_sizes.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/vlm_sizes.html" class="no-external">Vision Language Models</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('dmxt'); return false;">vlm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bG9yYQ=='); return false;">lora</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cXVhbnRpemF0aW9u'); return false;">quantization</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/vlm_sizes.html" class="no-external">
-<p>Vision Language Models and Lora adapters with quantization</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/vlm_sizes.html" class="no-external">
-<div class="listing-date">
-May 23, 2025
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="positional-embedding" class="level2">
+<h2 class="anchored" data-anchor-id="positional-embedding">Positional embedding</h2>
+<p>Positional embedding is used to encode the position of a token in a sentence using sinusoidals.</p>
+<p><span class="math inline">\(PE_{[k, 2i]} = sin(\frac{k}{n^\frac{2i}{d}})\)</span></p>
+<p><span class="math inline">\(PE_{[k, 2i + 1]} = cos(\frac{k}{n^\frac{2i}{d}})\)</span></p>
+<p>k is the position of the token in the sentence. n is a constant. i is the index in d dimensional vector. It ranges from 0 to <span class="math inline">\(\frac{d}{2}\)</span></p>
+<p>If d is the dimension for the position embedding then the d- dimensional vector will be represented with pair of sine and cosine. Hence there will be d/2 sine-cosine pair in the vector.</p>
+<p><span class="math inline">\(PE_k\)</span> = <span class="math inline">\(\begin{bmatrix}sin(k)\\ cos(k) \\ sin(\frac{k}{n^\frac{2}{d}})\\ cos(\frac{k}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{k}{n^\frac{2\frac{d}{2}}{d}})\\ cos(\frac{k}{n^\frac{2\frac{d}{2}}{d}}) \end{bmatrix}\)</span></p>
+<p>sine function represents the even positions in the d-dimensional vector while cosine function represents the odd position in the d-dimensional vector.</p>
+<div id="98400a8c" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="49df56d2" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> np.arange(<span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encoding(idx, d):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    embedding_values <span class="op">=</span> []</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(d<span class="op">//</span><span class="dv">2</span>):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            embedding_values.append(np.sin(idx <span class="op">/</span> (<span class="dv">1000000</span><span class="op">**</span>(<span class="dv">2</span><span class="op">*</span>i<span class="op">/</span>d))))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            embedding_values.append(np.cos(idx <span class="op">/</span> (<span class="dv">1000000</span><span class="op">**</span>(<span class="dv">2</span><span class="op">*</span>i<span class="op">/</span>d))))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(embedding_values)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> final():</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      final_embedding <span class="op">=</span> []</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            final_embedding.append(encoding(i, <span class="dv">512</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> np.array(final_embedding)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> final()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3020fa45" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> plt.matshow(x)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().colorbar(cax)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Embedding Dimension'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Index of tokens'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+<pre><code>Text(0, 0.5, 'Index of tokens')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="positional_encoding_files/figure-html/cell-4-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="c4c26ca7" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> ax.matshow(x.T)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.gcf().colorbar(cax)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Index of tokens'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Embedding Dimension'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">200</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="positional_encoding_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(PE_0\)</span> = <span class="math inline">\(\begin{bmatrix}0\\ 1 \\ 0\\ 1 \\. \\. \\. \\ 0 \\ 1 \end{bmatrix}\)</span> <span class="math inline">\(PE_1\)</span> = <span class="math inline">\(\begin{bmatrix}sin(1)\\ cos(1) \\ sin(\frac{1}{n^\frac{2}{d}})\\ cos(\frac{1}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(PE_2\)</span> = <span class="math inline">\(\begin{bmatrix}sin(2)\\ cos(2) \\ sin(\frac{2}{n^\frac{2}{d}})\\ cos(\frac{2}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(..........................................................................................\)</span> <span class="math inline">\(PE_{512}\)</span> = <span class="math inline">\(\begin{bmatrix}sin(512)\\ cos(512) \\ sin(\frac{512}{n^\frac{2}{d}})\\ cos(\frac{512}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span></p>
+<p>For all <span class="math inline">\(PE_{k}\)</span>,</p>
+<p>index i = 0 - follows sine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span> - follows cosine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span></p>
+<p>index i = 1 - follows sine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p>index i = d/2 - follows sine function with frequency <span class="math inline">\(\frac{1}{n}\)</span> and wavelength <span class="math inline">\(2\pi{n}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n}\)</span> and wavelength <span class="math inline">\(2\pi{n}\)</span></p>
+<p>This shows that the sine and cosine function frequency decrease as the indices go higher in the d-dimensional vector. We see higher variations in all the tokens for embedding index 0 ( faster changes in colour) and negligible variation for embedding index 512 (no change in colour)</p>
+<div id="00e7bee3" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_representation(x):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> []</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> x:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> <span class="bu">list</span>(np.binary_repr(i, width<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.array(tmp)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> tmp[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">all</span>.append(tmp)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(<span class="bu">all</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> binary_representation(<span class="bu">range</span>(<span class="dv">100</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x.astype(<span class="bu">float</span>)  </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> plt.matshow(x.T)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.gcf().colorbar(cax)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Index of tokens'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Embedding dimension'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+<pre><code>Text(0, 0.5, 'Embedding dimension')</code></pre>
 </div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="positional_encoding_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9u" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1753170998399" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
-<div class="thumbnail"><a href="./posts/object_detection_pipeline.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/object_detection.drawio.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/object_detection_pipeline.html" class="no-external">Object detection pipeline</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/object_detection_pipeline.html" class="no-external">
-<p>Object detection pipeline</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/object_detection_pipeline.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDbm1z" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1753170998399" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
-<div class="thumbnail"><a href="./posts/non_max_suppression.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/non_max_suppression.html" class="no-external">Non max suppression</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bm1z'); return false;">nms</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/non_max_suppression.html" class="no-external">
-<p>Non max suppression suppresses bounding box with non max confidence scores</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/non_max_suppression.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="bWV0cmljcw==" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1753170998401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="155">
-<div class="thumbnail"><a href="./posts/precision_recall.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/precision_recall_files/figure-html/cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/precision_recall.html" class="no-external">Precision and Recall</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWV0cmljcw=='); return false;">metrics</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/precision_recall.html" class="no-external">
-<p>Significance of precision and recall</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/precision_recall.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDTUFQ" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1753170998399" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
-<div class="thumbnail"><a href="./posts/mean_average_precision.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/mean_average_precision.html" class="no-external">Mean Average Precision</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUFQ'); return false;">MAP</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/mean_average_precision.html" class="no-external">
-<p>An important metric in Object detection tasks</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/mean_average_precision.html" class="no-external">
-<div class="listing-date">
-May 23, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDU09UQQ==" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1753170998387" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<div class="thumbnail"><a href="./posts/SOTA_object_detection.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/SOTA_object_detection.html" class="no-external">Evolution in object detection</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U09UQQ=='); return false;">SOTA</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/SOTA_object_detection.html" class="no-external">
-<p>state of the art models</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/SOTA_object_detection.html" class="no-external">
-<div class="listing-date">
-May 23, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="cHJlY2lzaW9uJTJDZm9ybWF0" data-listing-date-sort="1715212800000" data-listing-file-modified-sort="1753170998401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<div class="thumbnail"><a href="./posts/python-format-specifier.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/python-format-specifier.html" class="no-external">Python Format Specifier</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cHJlY2lzaW9u'); return false;">precision</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Zm9ybWF0'); return false;">format</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/python-format-specifier.html" class="no-external">
-<p>Formatting numbers</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/python-format-specifier.html" class="no-external">
-<div class="listing-date">
-May 9, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="aW1hZ2VzJTJDb3BlbmN2" data-listing-date-sort="1703376000000" data-listing-file-modified-sort="1753170998386" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<div class="thumbnail"><a href="./posts/Image-transformation.html" class="no-external">
+<p>From both the plots (related to sinusoidal function and the binary function), we cn see that index 0 of embedding dimension has the highest frequency. This shows that sinusoidal functions can represent positional embedding similar to binary representation.</p>
+<p>We prefer sinusoidal representation because it exhibits linearity in relationship.</p>
+<p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t + \theta) \\ cos(t + \theta) \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix} * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
+$ W =
+<span class="math display">\[\begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix}\]</span>
+<p>$</p>
+<p>As <span class="math inline">\(PE_{t}\)</span> is known then <span class="math inline">\(PE_{t + \theta}\)</span> can also be determined</p>
 
-<p class="card-img-top"><img src="posts/Image-transformation_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Image-transformation.html" class="no-external">Image Transformation</a>
-</h3>
-<div class="listing-categories">
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('aW1hZ2Vz'); return false;">images</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('b3BlbmN2'); return false;">opencv</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/Image-transformation.html" class="no-external">
-<p>Various ways to transform image</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/Image-transformation.html" class="no-external">
-<div class="listing-date">
-Dec 24, 2023
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

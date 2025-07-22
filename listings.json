@@ -2,6 +2,7 @@
   {
     "listing": "/blogs.html",
     "items": [
+      "/posts/positional_encoding.html",
       "/posts/LSTM.html",
       "/posts/transformers.html",
       "/posts/ReLU_activation.html",
