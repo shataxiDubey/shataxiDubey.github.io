@@ -466,7 +466,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p><span class="math inline">\(PE_0\)</span> = <span class="math inline">\(\begin{bmatrix}0\\ 1 \\ 0\\ 1 \\. \\. \\. \\ 0 \\ 1 \end{bmatrix}\)</span> <span class="math inline">\(PE_1\)</span> = <span class="math inline">\(\begin{bmatrix}sin(1)\\ cos(1) \\ sin(\frac{1}{n^\frac{2}{d}})\\ cos(\frac{1}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(PE_2\)</span> = <span class="math inline">\(\begin{bmatrix}sin(2)\\ cos(2) \\ sin(\frac{2}{n^\frac{2}{d}})\\ cos(\frac{2}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(..........................................................................................\)</span> <span class="math inline">\(PE_{512}\)</span> = <span class="math inline">\(\begin{bmatrix}sin(512)\\ cos(512) \\ sin(\frac{512}{n^\frac{2}{d}})\\ cos(\frac{512}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(PE_0\)</span> = <span class="math inline">\(\begin{bmatrix}0\\ 1 \\ 0\\ 1 \\. \\. \\. \\ 0 \\ 1 \end{bmatrix}\)</span> <span class="math inline">\(PE_1\)</span> = <span class="math inline">\(\begin{bmatrix}sin(1)\\ cos(1) \\ sin(\frac{1}{n^\frac{2}{d}})\\ cos(\frac{1}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(PE_2\)</span> = <span class="math inline">\(\begin{bmatrix}sin(2)\\ cos(2) \\ sin(\frac{2}{n^\frac{2}{d}})\\ cos(\frac{2}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(.............\)</span> <span class="math inline">\(PE_{512}\)</span> = <span class="math inline">\(\begin{bmatrix}sin(512)\\ cos(512) \\ sin(\frac{512}{n^\frac{2}{d}})\\ cos(\frac{512}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span></p>
 <p>For all <span class="math inline">\(PE_{k}\)</span>,</p>
 <p>index i = 0 - follows sine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span> - follows cosine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span></p>
 <p>index i = 1 - follows sine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span></p>
@@ -509,9 +509,8 @@ window.Quarto = {
 <p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t + \theta) \\ cos(t + \theta) \end{bmatrix}\)</span></p>
 <p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
 <p><span class="math inline">\(\begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix} * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
-$ W =
-<span class="math display">\[\begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix}\]</span>
-<p>$</p>
+<p><span class="math display">\[ W = \begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix}\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> is a constant</p>
 <p>As <span class="math inline">\(PE_{t}\)</span> is known then <span class="math inline">\(PE_{t + \theta}\)</span> can also be determined</p>
 
 
