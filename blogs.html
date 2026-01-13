@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4eb7e2958a5e015016747e776a672dcd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b6871152dc33c25e97e10f79624f84be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,7 +118,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -342,7 +343,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="Zm9ybWF0">format <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2F0ZXM=">gates <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1hZ2Vz">images <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZWFyaXR5">Linearity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9yYQ==">lora <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bHN0bQ==">lstm <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFQ">MAP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFza2VkJTIwYXR0ZW50aW9u">masked attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0cmljcw==">metrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u">multi head attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm1z">nms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b2JqZWN0JTIwZGV0ZWN0aW9u">object detection <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b3BlbmN2">opencv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9zaXRpb25hbCUyMGVuY29kaW5n">positional encoding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlY2lzaW9u">precision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbnRpemF0aW9u">quantization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVMVQ==">ReLU <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VsZiUyMGF0dGVudGlvbg==">Self attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09UQQ==">SOTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHJhbnNmb3JtZXJz">transformers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmxt">vlm <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(14)</span></div><div class="category" data-category="Zm9ybWF0">format <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2F0ZXM=">gates <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1hZ2Vz">images <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZWFyaXR5">Linearity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9yYQ==">lora <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bHN0bQ==">lstm <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFQ">MAP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFza2VkJTIwYXR0ZW50aW9u">masked attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0cmljcw==">metrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u">multi head attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm1z">nms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b2JqZWN0JTIwZGV0ZWN0aW9u">object detection <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b3BlbmN2">opencv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9zaXRpb25hbCUyMGVuY29kaW5n">positional encoding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlY2lzaW9u">precision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbnRpemF0aW9u">quantization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVMVQ==">ReLU <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VsZiUyMGF0dGVudGlvbg==">Self attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09UQQ==">SOTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHJhbnNmb3JtZXJz">transformers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dXY=">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmxt">vlm <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -372,7 +373,56 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cG9zaXRpb25hbCUyMGVuY29kaW5nJTJDdHJhbnNmb3JtZXJz" data-listing-date-sort="1753142400000" data-listing-file-modified-sort="1753172141550" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1768329211969" data-listing-reading-time-sort="1" data-listing-word-count-sort="111">
+<div class="thumbnail"><a href="./posts/vit.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/images/vit_patch_embedding.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/vit.html" class="no-external">First, the images is divided into non overlapping patches</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/vit.html" class="no-external">
+The question is: - is it necessary to use convolutional neural network for getting patches - can it patches be generated simply by Image.crop
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/vit.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="dXY=" data-listing-date-sort="1768262400000" data-listing-file-modified-sort="1768329211968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="176">
+<div class="thumbnail"><a href="./posts/uv_package_manager.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/uv_package_manager.html" class="no-external">uv package manager</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('dXY='); return false;">uv</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/uv_package_manager.html" class="no-external">
+<p>A fast Python package and project manager, written in Rust</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/uv_package_manager.html" class="no-external">
+<div class="listing-date">
+Jan 13, 2026
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="cG9zaXRpb25hbCUyMGVuY29kaW5nJTJDdHJhbnNmb3JtZXJz" data-listing-date-sort="1753142400000" data-listing-file-modified-sort="1768329211968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
 <div class="thumbnail"><a href="./posts/positional_encoding.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/positional_encoding_files/figure-html/cell-4-output-2.png"  class="thumbnail-image card-img"/></p>
@@ -404,7 +454,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="bHN0bSUyQ2dhdGVz" data-listing-date-sort="1752537600000" data-listing-file-modified-sort="1753172141535" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="167">
+<div class="quarto-post image-right" data-index="3" data-categories="bHN0bSUyQ2dhdGVz" data-listing-date-sort="1752537600000" data-listing-file-modified-sort="1768329211945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="167">
 <div class="thumbnail"><a href="./posts/LSTM.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/images/lstm_gates.png"  class="thumbnail-image card-img"/></p>
@@ -436,7 +486,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="U2VsZiUyMGF0dGVudGlvbiUyQ21hc2tlZCUyMGF0dGVudGlvbiUyQ211bHRpJTIwaGVhZCUyMGF0dGVudGlvbg==" data-listing-date-sort="1751328000000" data-listing-file-modified-sort="1753172141550" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609">
+<div class="quarto-post image-right" data-index="4" data-categories="U2VsZiUyMGF0dGVudGlvbiUyQ21hc2tlZCUyMGF0dGVudGlvbiUyQ211bHRpJTIwaGVhZCUyMGF0dGVudGlvbg==" data-listing-date-sort="1751328000000" data-listing-file-modified-sort="1768329211968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609">
 <div class="thumbnail"><a href="./posts/transformers.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/images/tokenization_and_mead_dimension.png"  class="thumbnail-image card-img"/></p>
@@ -470,7 +520,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="UmVMVSUyQ0xpbmVhcml0eQ==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1753172141536" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
+<div class="quarto-post image-right" data-index="5" data-categories="UmVMVSUyQ0xpbmVhcml0eQ==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1768329211946" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
 <div class="thumbnail"><a href="./posts/ReLU_activation.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/ReLU_activation_files/figure-html/cell-19-output-3.png"  class="thumbnail-image card-img"/></p>
@@ -502,7 +552,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="dmxtJTJDbG9yYSUyQ3F1YW50aXphdGlvbg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1753172141551" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="6" data-categories="dmxtJTJDbG9yYSUyQ3F1YW50aXphdGlvbg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1768329211969" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/vlm_sizes.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -536,37 +586,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9u" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1753172141548" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
-<div class="thumbnail"><a href="./posts/object_detection_pipeline.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/object_detection.drawio.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/object_detection_pipeline.html" class="no-external">Object detection pipeline</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/object_detection_pipeline.html" class="no-external">
-<p>Object detection pipeline</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/object_detection_pipeline.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDbm1z" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1753172141548" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
+<div class="quarto-post image-right" data-index="7" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDbm1z" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1768329211966" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
 <div class="thumbnail"><a href="./posts/non_max_suppression.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -598,7 +618,37 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="bWV0cmljcw==" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1753172141550" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="155">
+<div class="quarto-post image-right" data-index="8" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9u" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1768329211966" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="thumbnail"><a href="./posts/object_detection_pipeline.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/object_detection.drawio.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/object_detection_pipeline.html" class="no-external">Object detection pipeline</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/object_detection_pipeline.html" class="no-external">
+<p>Object detection pipeline</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/object_detection_pipeline.html" class="no-external">
+<div class="listing-date">
+Aug 1, 2024
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="bWV0cmljcw==" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1768329211968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="155">
 <div class="thumbnail"><a href="./posts/precision_recall.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/precision_recall_files/figure-html/cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
@@ -628,39 +678,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDTUFQ" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1753172141548" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
-<div class="thumbnail"><a href="./posts/mean_average_precision.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/mean_average_precision.html" class="no-external">Mean Average Precision</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUFQ'); return false;">MAP</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/mean_average_precision.html" class="no-external">
-<p>An important metric in Object detection tasks</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/mean_average_precision.html" class="no-external">
-<div class="listing-date">
-May 23, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDU09UQQ==" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1753172141536" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="quarto-post image-right" data-index="10" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDU09UQQ==" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1768329211946" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <div class="thumbnail"><a href="./posts/SOTA_object_detection.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -692,7 +710,39 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="cHJlY2lzaW9uJTJDZm9ybWF0" data-listing-date-sort="1715212800000" data-listing-file-modified-sort="1753172141550" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="quarto-post image-right" data-index="11" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDTUFQ" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1768329211966" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
+<div class="thumbnail"><a href="./posts/mean_average_precision.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/mean_average_precision.html" class="no-external">Mean Average Precision</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TUFQ'); return false;">MAP</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/mean_average_precision.html" class="no-external">
+<p>An important metric in Object detection tasks</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/mean_average_precision.html" class="no-external">
+<div class="listing-date">
+May 23, 2024
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="cHJlY2lzaW9uJTJDZm9ybWF0" data-listing-date-sort="1715212800000" data-listing-file-modified-sort="1768329211968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <div class="thumbnail"><a href="./posts/python-format-specifier.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -724,7 +774,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="aW1hZ2VzJTJDb3BlbmN2" data-listing-date-sort="1703376000000" data-listing-file-modified-sort="1753172141534" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="quarto-post image-right" data-index="13" data-categories="aW1hZ2VzJTJDb3BlbmN2" data-listing-date-sort="1703376000000" data-listing-file-modified-sort="1768329211945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
 <div class="thumbnail"><a href="./posts/Image-transformation.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/Image-transformation_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
@@ -823,13 +873,14 @@ Shataxi Dubey
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4eb7e2958a5e015016747e776a672dcd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b6871152dc33c25e97e10f79624f84be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -368,16 +369,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When a model has high recall but low precision, then the model classifies most of the positive samples correctly but it has many false positives (i.e.&nbsp;classifies many Negative samples as Positive). When a model has high precision but low recall, then the model is accurate when it classifies a sample as Positive but it may classify only some of the positive samples.</p>
 <p>Note that as the recall increases, the precision decreases. The reason is that when the number of positive samples increases (high recall), the accuracy of classifying each sample correctly decreases (low precision). This is expected, as the model is more likely to fail when there are many samples.</p>
 <div id="cell-3" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="st">"positive"</span>, <span class="st">"negative"</span>, <span class="st">"negative"</span>, <span class="st">"positive"</span>, <span class="st">"positive"</span>, <span class="st">"positive"</span>, <span class="st">"negative"</span>, <span class="st">"positive"</span>, <span class="st">"negative"</span>, <span class="st">"positive"</span>, <span class="st">"positive"</span>, <span class="st">"positive"</span>, <span class="st">"positive"</span>, <span class="st">"negative"</span>, <span class="st">"negative"</span>, <span class="st">"negative"</span>]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pred_scores <span class="op">=</span> [<span class="fl">0.7</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.55</span>, <span class="fl">0.9</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.35</span>]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> np.arange(start<span class="op">=</span><span class="fl">0.2</span>, stop<span class="op">=</span><span class="fl">0.7</span>, step<span class="op">=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> np.arange(start<span class="op">=</span><span class="fl">0.2</span>, stop<span class="op">=</span><span class="fl">0.7</span>, step<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-4" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.metrics</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.metrics</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precision_recall_curve(y_true, pred_scores, thresholds):</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    precisions <span class="op">=</span> []</span>
@@ -392,47 +393,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        precisions.append(precision)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        recalls.append(recall)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> precisions, recalls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> precisions, recalls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-5" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># when threshold(0.2) is low, all predicted samples become positive and it will definetly include actual positives </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># when threshold(0.2) is low, all predicted samples become positive and it will definetly include actual positives </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so recall will be high but precision will be low because total predicted positives are more than actual positives</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="st">"positive"</span> <span class="cf">if</span> score <span class="op">&gt;=</span> <span class="fl">0.2</span> <span class="cf">else</span> <span class="st">"negative"</span> <span class="cf">for</span> score <span class="kw">in</span> pred_scores]</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>precision <span class="op">=</span> sklearn.metrics.precision_score(y_true<span class="op">=</span>y_true, y_pred<span class="op">=</span>y_pred, pos_label<span class="op">=</span><span class="st">"positive"</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>recall <span class="op">=</span> sklearn.metrics.recall_score(y_true<span class="op">=</span>y_true, y_pred<span class="op">=</span>y_pred, pos_label<span class="op">=</span><span class="st">"positive"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Precision </span><span class="sc">{</span>precision<span class="sc">}</span><span class="ss">, Recall </span><span class="sc">{</span>recall<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Precision </span><span class="sc">{</span>precision<span class="sc">}</span><span class="ss">, Recall </span><span class="sc">{</span>recall<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Precision 0.5625, Recall 1.0</code></pre>
 </div>
 </div>
 <div id="cell-6" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># when threshold(0.9) is high, positive samples will be actual positive samples so they become true positive which makes precision high</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># when threshold(0.9) is high, positive samples will be actual positive samples so they become true positive which makes precision high</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># that is the model is more than 0.9 sure that the sample is positive, so it will be an actual positive but still you are not covering all </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># positives because of keeping high threshold</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="st">"positive"</span> <span class="cf">if</span> score <span class="op">&gt;=</span> <span class="fl">0.9</span> <span class="cf">else</span> <span class="st">"negative"</span> <span class="cf">for</span> score <span class="kw">in</span> pred_scores]</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>precision <span class="op">=</span> sklearn.metrics.precision_score(y_true<span class="op">=</span>y_true, y_pred<span class="op">=</span>y_pred, pos_label<span class="op">=</span><span class="st">"positive"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>recall <span class="op">=</span> sklearn.metrics.recall_score(y_true<span class="op">=</span>y_true, y_pred<span class="op">=</span>y_pred, pos_label<span class="op">=</span><span class="st">"positive"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Precision </span><span class="sc">{</span>precision<span class="sc">}</span><span class="ss">, Recall </span><span class="sc">{</span>recall<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Precision </span><span class="sc">{</span>precision<span class="sc">}</span><span class="ss">, Recall </span><span class="sc">{</span>recall<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Precision 1.0, Recall 0.1111111111111111</code></pre>
 </div>
 </div>
 <div id="cell-7" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>precisions, recalls <span class="op">=</span> precision_recall_curve(y_true, pred_scores, thresholds)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>precisions, recalls <span class="op">=</span> precision_recall_curve(y_true, pred_scores, thresholds)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Precision list </span><span class="sc">{</span>precisions<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Recall list </span><span class="sc">{</span>recalls<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Recall list </span><span class="sc">{</span>recalls<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Precision list [0.5625, 0.5714285714285714, 0.5714285714285714, 0.6363636363636364, 0.7, 0.875, 0.875, 1.0, 1.0, 1.0]
 Recall list [1.0, 0.8888888888888888, 0.8888888888888888, 0.7777777777777778, 0.7777777777777778, 0.7777777777777778, 0.7777777777777778, 0.6666666666666666, 0.5555555555555556, 0.4444444444444444]</code></pre>
 </div>
 </div>
 <div id="cell-8" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.plot(recalls, precisions, color<span class="op">=</span><span class="st">"red"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Recall"</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Precision"</span>)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Precision-Recall Curve obtained by varying score threshold </span><span class="ch">\n</span><span class="st"> score threshold is increasing from right to left"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -443,7 +444,7 @@ Recall list [1.0, 0.8888888888888888, 0.8888888888888888, 0.7777777777777778, 0.
 </div>
 <p>Similarly, if we vary IOU threshold then we will get another precision recall curve</p>
 <div id="cell-10" class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_ap(recall, precision):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_ap(recall, precision):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#from ultralytics</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Append sentinel values to beginning and end</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    mrec <span class="op">=</span> np.concatenate(([<span class="fl">0.0</span>], recall, [<span class="fl">1.0</span>]))</span>
@@ -463,18 +464,18 @@ Recall list [1.0, 0.8888888888888888, 0.8888888888888888, 0.7777777777777778, 0.
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> np.where(mrec[<span class="dv">1</span>:] <span class="op">!=</span> mrec[:<span class="op">-</span><span class="dv">1</span>])[<span class="dv">0</span>]  <span class="co"># points where x-axis (recall) changes</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        ap <span class="op">=</span> np.<span class="bu">sum</span>((mrec[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> mrec[i]) <span class="op">*</span> mpre[i <span class="op">+</span> <span class="dv">1</span>])  <span class="co"># area under curve</span></span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ap, mpre, mrec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ap, mpre, mrec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-11" class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smooth(y, f<span class="op">=</span><span class="fl">0.05</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smooth(y, f<span class="op">=</span><span class="fl">0.05</span>):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Box filter of fraction f."""</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    nf <span class="op">=</span> <span class="bu">round</span>(<span class="bu">len</span>(y) <span class="op">*</span> f <span class="op">*</span> <span class="dv">2</span>) <span class="op">//</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>  <span class="co"># number of filter elements (must be odd)</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.ones(nf <span class="op">//</span> <span class="dv">2</span>)  <span class="co"># ones padding</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    yp <span class="op">=</span> np.concatenate((p <span class="op">*</span> y[<span class="dv">0</span>], y, p <span class="op">*</span> y[<span class="op">-</span><span class="dv">1</span>]), <span class="dv">0</span>)  <span class="co"># y padded</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.convolve(yp, np.ones(nf) <span class="op">/</span> nf, mode<span class="op">=</span><span class="st">"valid"</span>)  <span class="co"># y-smoothed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.convolve(yp, np.ones(nf) <span class="op">/</span> nf, mode<span class="op">=</span><span class="st">"valid"</span>)  <span class="co"># y-smoothed</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-12" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ap_per_class(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ap_per_class(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    tp, conf, pred_cls, target_cls, plot<span class="op">=</span><span class="va">False</span>,eps<span class="op">=</span><span class="fl">1e-16</span>):</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort by objectness</span></span>
@@ -530,17 +531,17 @@ Recall list [1.0, 0.8888888888888888, 0.8888888888888888, 0.7777777777777778, 0.
 <span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    tp <span class="op">=</span> (r <span class="op">*</span> nt).<span class="bu">round</span>()  <span class="co"># true positives</span></span>
 <span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    fp <span class="op">=</span> (tp <span class="op">/</span> (p <span class="op">+</span> eps) <span class="op">-</span> tp).<span class="bu">round</span>()  <span class="co"># false positives</span></span>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return tp, fp, p, r, ap, f1, unique_classes.astype(int), p_curve, r_curve, f1_curve, x, prec_values</span></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>True positives are decided using IOU</p>
 <p>class 1 p = 1, r = 0.33 p = 0.5, r = 0.33 p = 0.66, r = 0.66</p>
 <p>class 2 p = 1, r = 0.5 p = 0.5, r = 0.5</p>
 <div id="cell-15" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tp <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tp <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>])</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>conf <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pred_cls <span class="op">=</span> np.array([<span class="st">'1'</span>,<span class="st">'1'</span>,<span class="st">'1'</span>,<span class="st">'2'</span>,<span class="st">'2'</span>])</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>target_cls <span class="op">=</span> np.array([<span class="st">'1'</span>,<span class="st">'1'</span>,<span class="st">'1'</span>,<span class="st">'2'</span>,<span class="st">'2'</span>])</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ap_per_class(tp, conf, pred_cls, target_cls, plot<span class="op">=</span><span class="va">False</span>,eps<span class="op">=</span><span class="fl">1e-16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ap_per_class(tp, conf, pred_cls, target_cls, plot<span class="op">=</span><span class="va">False</span>,eps<span class="op">=</span><span class="fl">1e-16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>recall [0.33333333 0.33333333 0.66666667]
 precision [1.         0.5        0.66666667]
@@ -627,13 +628,14 @@ AP 0.6224999999999999</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

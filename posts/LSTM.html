@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4eb7e2958a5e015016747e776a672dcd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b6871152dc33c25e97e10f79624f84be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -124,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -397,34 +398,34 @@ window.Quarto = {
 
 <p>Through this notebook, we can easily understand how input gate, output gate, forget gate work in LSTM and how forward propagation and backward propagation happen through various gates in a recurrent neural network.</p>
 <div id="870be971" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="52043131" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cell_state <span class="op">=</span> torch.arange(start <span class="op">=</span> <span class="dv">0</span>, end <span class="op">=</span> <span class="dv">5</span>).reshape((<span class="dv">1</span>,<span class="dv">5</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cell_state <span class="op">=</span> torch.arange(start <span class="op">=</span> <span class="dv">0</span>, end <span class="op">=</span> <span class="dv">5</span>).reshape((<span class="dv">1</span>,<span class="dv">5</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hidden_state <span class="op">=</span> torch.arange(start <span class="op">=</span> <span class="dv">10</span>, end <span class="op">=</span> <span class="dv">15</span>).reshape((<span class="dv">1</span>,<span class="dv">5</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>input_gate <span class="op">=</span> torch.arange(start <span class="op">=</span> <span class="dv">0</span>, end <span class="op">=</span> <span class="dv">10</span>).reshape((<span class="dv">5</span>,<span class="dv">2</span>))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>forget_gate <span class="op">=</span> torch.arange(start <span class="op">=</span> <span class="dv">10</span>, end <span class="op">=</span> <span class="dv">20</span>).reshape((<span class="dv">5</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>forget_gate <span class="op">=</span> torch.arange(start <span class="op">=</span> <span class="dv">10</span>, end <span class="op">=</span> <span class="dv">20</span>).reshape((<span class="dv">5</span>,<span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="a8cd9c87" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>concatenated_input <span class="op">=</span> torch.concatenate([hidden_state, cell_state], axis <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>concatenated_weights <span class="op">=</span> torch.concatenate([input_gate, forget_gate], axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>concatenated_input <span class="op">=</span> torch.concatenate([hidden_state, cell_state], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>concatenated_weights <span class="op">=</span> torch.concatenate([input_gate, forget_gate], axis <span class="op">=</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="3c48017f" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>concatenated_input<span class="op">@</span>concatenated_weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>concatenated_input<span class="op">@</span>concatenated_weights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>tensor([[420, 490]])</code></pre>
 </div>
 </div>
 <div id="f6560d40" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cell_state<span class="op">@</span>forget_gate <span class="op">+</span> hidden_state<span class="op">@</span>input_gate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cell_state<span class="op">@</span>forget_gate <span class="op">+</span> hidden_state<span class="op">@</span>input_gate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>tensor([[420, 490]])</code></pre>
 </div>
 </div>
 <div id="10d4d54b" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneHotEncode(data, num_chars, chr_to_idx):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneHotEncode(data, num_chars, chr_to_idx):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    all_one_hots <span class="op">=</span> []</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="bu">chr</span> <span class="kw">in</span> data:</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        onehot <span class="op">=</span> np.zeros((num_chars,<span class="dv">1</span>))</span>
@@ -432,7 +433,7 @@ window.Quarto = {
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        onehot[idx] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        all_one_hots.append(onehot)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_one_hots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_one_hots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="xavier-initialisation" class="level4">
 <h4 class="anchored" data-anchor-id="xavier-initialisation">Xavier initialisation</h4>
@@ -440,7 +441,7 @@ window.Quarto = {
 <p>draw weight from a random uniform distribution [-x, x]</p>
 <p>x = sqrt(6/(input_size + output_size))</p>
 <div id="29160799" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initWeights(input_size, output_size):  <span class="co"># input size = hidden size, output size = hidden size + num_of_unique_chars </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initWeights(input_size, output_size):  <span class="co"># input size = hidden size, output size = hidden size + num_of_unique_chars </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.sqrt(<span class="dv">6</span> <span class="op">/</span> (input_size <span class="op">+</span> output_size))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.random.uniform(low <span class="op">=</span> <span class="op">-</span>x, high <span class="op">=</span> x, size <span class="op">=</span> (input_size, output_size)) </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span>
@@ -461,11 +462,11 @@ window.Quarto = {
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> (<span class="bu">input</span><span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> softmax(<span class="bu">input</span>):</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="bu">input</span>)<span class="op">/</span> <span class="bu">sum</span>(np.exp(<span class="bu">input</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="bu">input</span>)<span class="op">/</span> <span class="bu">sum</span>(np.exp(<span class="bu">input</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="images/lstm_gates.png" class="img-fluid"></p>
 <div id="bfe5b9d9" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LSTM():</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LSTM():</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_size, hidden_size, output_size, learning_rate, num_epochs):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate</span>
@@ -616,10 +617,10 @@ window.Quarto = {
 <span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>            <span class="co"># print(idx)</span></span>
 <span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>            characters <span class="op">+=</span> (idx_to_chr[idx])</span>
 <span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> characters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> characters</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="5d5b1a05" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">##### Data #####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">##### Data #####</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="st">"""To be, or not to be, that is the question: Whether </span><span class="op">\</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">'tis nobler in the mind to suffer The slings and arrows of ou</span><span class="op">\</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">trageous fortune, Or to take arms against a sea of troubles A</span><span class="op">\</span></span>
@@ -653,26 +654,26 @@ window.Quarto = {
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>trainX <span class="op">=</span> oneHotEncode(trainX, num_chars, chr_to_idx)</span>
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>lstm <span class="op">=</span> LSTM(char_size <span class="op">+</span> hidden_size, hidden_size, char_size, learning_rate, num_epochs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>lstm <span class="op">=</span> LSTM(char_size <span class="op">+</span> hidden_size, hidden_size, char_size, learning_rate, num_epochs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unique characters 32, total training inputs 865</code></pre>
 </div>
 </div>
 <div id="cd6c642a" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> lstm.forward(trainX)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(outputs[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> lstm.forward(trainX)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(outputs[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>32</code></pre>
 </div>
 </div>
 <div id="40056889" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(outputs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(outputs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>865</code></pre>
 </div>
 </div>
 <div id="015399cd" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lstm.train(trainX, trainY, chr_to_idx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lstm.train(trainX, trainY, chr_to_idx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>  3%|▎         | 28/1000 [00:04&lt;02:23,  6.78it/s]C:\Users\Hp\AppData\Local\Temp\ipykernel_13924\2832247213.py:117: RuntimeWarning: overflow encountered in matmul
   d_z = self.wf.T @ d_f + self.wi.T @ d_i + self.wo.T @ d_o + self.wc.T @ d_cs # shape of d_z: (hidden_size + chr_size , 1)
@@ -700,9 +701,9 @@ C:\Users\Hp\AppData\Local\Temp\ipykernel_13924\2832247213.py:113: RuntimeWarning
 </div>
 </div>
 <div id="7991a756" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> lstm.inference(trainX, idx_to_chr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> lstm.inference(trainX, idx_to_chr)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</code></pre>
 </div>
@@ -795,13 +796,14 @@ C:\Users\Hp\AppData\Local\Temp\ipykernel_13924\2832247213.py:113: RuntimeWarning
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

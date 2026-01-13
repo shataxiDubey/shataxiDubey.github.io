@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4eb7e2958a5e015016747e776a672dcd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3fced2653c1411365395c6308d7f7025.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b6871152dc33c25e97e10f79624f84be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -380,14 +381,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div id="a48d804e" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="reading-image" class="level2">
 <h2 class="anchored" data-anchor-id="reading-image">Reading Image</h2>
 <div id="9c230d53" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the input image</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the input image</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> cv2.imread(<span class="st">"../images/trees.jpg"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># convert from BGR to RGB so we can plot using matplotlib</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span>
@@ -395,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># show the image</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(img)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -408,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="translation-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="translation-of-image">Translation of image</h2>
 <div id="e70a181b" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.shape)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rows, cols, dim <span class="op">=</span> img.shape</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># transformation matrix for translation</span></span>
@@ -421,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># show the resulting image</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.imshow(translated_img)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1606, 2222, 3)</code></pre>
 </div>
@@ -437,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="scaling-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="scaling-of-image">Scaling of Image</h2>
 <div id="28e505e9" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.shape)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rows, cols, dim <span class="op">=</span> img.shape</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#transformation matrix for Scaling</span></span>
@@ -450,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># show the resulting image</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.imshow(scaled_img)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1606, 2222, 3)</code></pre>
 </div>
@@ -466,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="shearing-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="shearing-of-image">Shearing of Image</h2>
 <div id="e661d9a1" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(img.shape)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rows, cols, dim <span class="op">=</span> img.shape</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># transformation matrix for Shearing</span></span>
@@ -484,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># show the resulting image</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.imshow(sheared_img)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1606, 2222, 3)</code></pre>
 </div>
@@ -500,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reflection-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="reflection-of-image">Reflection of Image</h2>
 <div id="d07252dd" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rows, cols, dim <span class="op">=</span> img.shape</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># transformation matrix for x-axis reflection </span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.float32([[<span class="dv">1</span>,  <span class="dv">0</span>, <span class="dv">0</span>   ],</span>
@@ -520,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'X-axis reflection and Y-axis reflection'</span>)</span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.imshow(combined)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -533,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rotation-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="rotation-of-image">Rotation of Image</h2>
 <div id="137cf165" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image shape</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>rows, cols, dim <span class="op">=</span> img.shape</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#angle from degree to radian</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>angle <span class="op">=</span> np.radians(<span class="dv">10</span>)</span>
@@ -547,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show the resulting image</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.imshow(rotated_img)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -560,14 +561,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cropping-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="cropping-of-image">Cropping of Image</h2>
 <div id="d6fff0b4" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get 200 pixels from 100 to 300 on both x-axis &amp; y-axis</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get 200 pixels from 100 to 300 on both x-axis &amp; y-axis</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># change that if you will, just make sure you don't exceed cols &amp; rows</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cropped_img <span class="op">=</span> img[<span class="dv">100</span>:<span class="dv">300</span>, <span class="dv">100</span>:<span class="dv">300</span>]</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># disable x &amp; y axis</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># show the resulting image</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.imshow(cropped_img)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -580,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="center-crop-of-image" class="level2">
 <h2 class="anchored" data-anchor-id="center-crop-of-image">Center Crop of Image</h2>
 <div id="adc9172c" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image width &amp; height</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image width &amp; height</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>width, height <span class="op">=</span> img.shape[<span class="dv">1</span>], img.shape[<span class="dv">0</span>]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get the image cropped width &amp; height</span></span>
@@ -596,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># show the resulting image</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.imshow(center_cropped_img)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -674,13 +675,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

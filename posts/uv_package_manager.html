@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shataxi Dubey">
-<meta name="dcterms.date" content="2025-07-22">
-<meta name="description" content="Positional encoding used for encoding where the tokens appear in a sentence">
+<meta name="dcterms.date" content="2026-01-13">
+<meta name="description" content="A fast Python package and project manager, written in Rust">
 
-<title>Positional Encoding in transformers – Shataxi Dubey</title>
+<title>uv package manager – Shataxi Dubey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -111,35 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -348,15 +284,14 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Positional Encoding in transformers</h1>
+      <h1 class="title">uv package manager</h1>
                   <div>
         <div class="description">
-          Positional encoding used for encoding where the tokens appear in a sentence
+          A fast Python package and project manager, written in Rust
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">positional encoding</div>
-                <div class="quarto-category">transformers</div>
+                <div class="quarto-category">uv</div>
               </div>
                   </div>
   </div>
@@ -374,7 +309,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 22, 2025</p>
+        <p class="date">January 13, 2026</p>
       </div>
     </div>
     
@@ -390,7 +325,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#positional-embedding" id="toc-positional-embedding" class="nav-link active" data-scroll-target="#positional-embedding">Positional embedding</a></li>
+  <li><a href="#uv-installation" id="toc-uv-installation" class="nav-link active" data-scroll-target="#uv-installation">uv installation</a></li>
+  <li><a href="#to-intialise-a-project-using-uv" id="toc-to-intialise-a-project-using-uv" class="nav-link" data-scroll-target="#to-intialise-a-project-using-uv">To intialise a project using uv</a></li>
+  <li><a href="#uv-run" id="toc-uv-run" class="nav-link" data-scroll-target="#uv-run">uv run</a></li>
+  <li><a href="#to-check-the-version-of-your-project" id="toc-to-check-the-version-of-your-project" class="nav-link" data-scroll-target="#to-check-the-version-of-your-project">To check the version of your project</a></li>
   </ul>
 </nav>
     </div>
@@ -402,117 +340,41 @@ window.Quarto = {
 
 
 
-<section id="positional-embedding" class="level2">
-<h2 class="anchored" data-anchor-id="positional-embedding">Positional embedding</h2>
-<p>Positional embedding is used to encode the position of a token in a sentence using sinusoidals.</p>
-<p><span class="math inline">\(PE_{[k, 2i]} = sin(\frac{k}{n^\frac{2i}{d}})\)</span></p>
-<p><span class="math inline">\(PE_{[k, 2i + 1]} = cos(\frac{k}{n^\frac{2i}{d}})\)</span></p>
-<p>k is the position of the token in the sentence. n is a constant. i is the index in d dimensional vector. It ranges from 0 to <span class="math inline">\(\frac{d}{2}\)</span></p>
-<p>If d is the dimension for the position embedding then the d- dimensional vector will be represented with pair of sine and cosine. Hence there will be d/2 sine-cosine pair in the vector.</p>
-<p><span class="math inline">\(PE_k\)</span> = <span class="math inline">\(\begin{bmatrix}sin(k)\\ cos(k) \\ sin(\frac{k}{n^\frac{2}{d}})\\ cos(\frac{k}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{k}{n^\frac{2\frac{d}{2}}{d}})\\ cos(\frac{k}{n^\frac{2\frac{d}{2}}{d}}) \end{bmatrix}\)</span></p>
-<p>sine function represents the even positions in the d-dimensional vector while cosine function represents the odd position in the d-dimensional vector.</p>
-<div id="98400a8c" class="cell" data-execution_count="71">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="49df56d2" class="cell" data-execution_count="72">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> np.arange(<span class="dv">100</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encoding(idx, d):</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    embedding_values <span class="op">=</span> []</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(d<span class="op">//</span><span class="dv">2</span>):</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            embedding_values.append(np.sin(idx <span class="op">/</span> (<span class="dv">1000000</span><span class="op">**</span>(<span class="dv">2</span><span class="op">*</span>i<span class="op">/</span>d))))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            embedding_values.append(np.cos(idx <span class="op">/</span> (<span class="dv">1000000</span><span class="op">**</span>(<span class="dv">2</span><span class="op">*</span>i<span class="op">/</span>d))))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(embedding_values)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> final():</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      final_embedding <span class="op">=</span> []</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            final_embedding.append(encoding(i, <span class="dv">512</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> np.array(final_embedding)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> final()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="3020fa45" class="cell" data-execution_count="73">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> plt.matshow(x)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().colorbar(cax)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Embedding Dimension'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Index of tokens'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="73">
-<pre><code>Text(0, 0.5, 'Index of tokens')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="positional_encoding_files/figure-html/cell-4-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="c4c26ca7" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> ax.matshow(x.T)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Index of tokens'</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Embedding Dimension'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">200</span>,<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="positional_encoding_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(PE_0\)</span> = <span class="math inline">\(\begin{bmatrix}0\\ 1 \\ 0\\ 1 \\. \\. \\. \\ 0 \\ 1 \end{bmatrix}\)</span> <span class="math inline">\(PE_1\)</span> = <span class="math inline">\(\begin{bmatrix}sin(1)\\ cos(1) \\ sin(\frac{1}{n^\frac{2}{d}})\\ cos(\frac{1}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(PE_2\)</span> = <span class="math inline">\(\begin{bmatrix}sin(2)\\ cos(2) \\ sin(\frac{2}{n^\frac{2}{d}})\\ cos(\frac{2}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(.............\)</span> <span class="math inline">\(PE_{512}\)</span> = <span class="math inline">\(\begin{bmatrix}sin(512)\\ cos(512) \\ sin(\frac{512}{n^\frac{2}{d}})\\ cos(\frac{512}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span></p>
-<p>For all <span class="math inline">\(PE_{k}\)</span>,</p>
-<p>index i = 0 - follows sine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span> - follows cosine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span></p>
-<p>index i = 1 - follows sine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span></p>
+<section id="uv-installation" class="level3">
+<h3 class="anchored" data-anchor-id="uv-installation">uv installation</h3>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li>For linux:</li>
 </ul>
-<p>index i = d/2 - follows sine function with frequency <span class="math inline">\(\frac{1}{n}\)</span> and wavelength <span class="math inline">\(2\pi{n}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n}\)</span> and wavelength <span class="math inline">\(2\pi{n}\)</span></p>
-<p>This shows that the sine and cosine function frequency decrease as the indices go higher in the d-dimensional vector. We see higher variations in all the tokens for embedding index 0 ( faster changes in colour) and negligible variation for embedding index 512 (no change in colour)</p>
-<div id="00e7bee3" class="cell" data-execution_count="70">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_representation(x):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> []</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> x:</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> <span class="bu">list</span>(np.binary_repr(i, width<span class="op">=</span><span class="dv">10</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.array(tmp)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> tmp[::<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">all</span>.append(tmp)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(<span class="bu">all</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> binary_representation(<span class="bu">range</span>(<span class="dv">100</span>))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x.astype(<span class="bu">float</span>)  </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> plt.matshow(x.T)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.gcf().colorbar(cax)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Index of tokens'</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Embedding dimension'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="70">
-<pre><code>Text(0, 0.5, 'Embedding dimension')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="positional_encoding_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>From both the plots (related to sinusoidal function and the binary function), we cn see that index 0 of embedding dimension has the highest frequency. This shows that sinusoidal functions can represent positional embedding similar to binary representation.</p>
-<p>We prefer sinusoidal representation because it exhibits linearity in relationship.</p>
-<p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t + \theta) \\ cos(t + \theta) \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(\begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix} * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
-<p><span class="math display">\[ W = \begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix}\]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is a constant</p>
-<p>As <span class="math inline">\(PE_{t}\)</span> is known then <span class="math inline">\(PE_{t + \theta}\)</span> can also be determined</p>
+<p>curl -LsSf https://astral.sh/uv/install.sh | sh</p>
+<ul>
+<li>For windows:</li>
+</ul>
+<p>powershell -ExecutionPolicy ByPass -c “irm https://astral.sh/uv/install.ps1 | iex”</p>
+</section>
+<section id="to-intialise-a-project-using-uv" class="level3">
+<h3 class="anchored" data-anchor-id="to-intialise-a-project-using-uv">To intialise a project using uv</h3>
+<p><code>uv init first-project</code></p>
+<p>uv will create the following files</p>
+<p>├── .gitignore ├── .python-version ├── README.md ├── main.py └── pyproject.toml</p>
+<p>.python-version stores the version of the python. It tells <code>uv</code> what python version to use. <code>uv</code> uses this python version to create the virtual environment</p>
+<p>pyproject.toml contains the metadata of the project. It tells what are the dependencies used in the project and details about the project. to maintain project dependencies and project details, pyproject.toml can be manually edited.</p>
+<pre><code>[project]
+name = "first-package"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "&gt;=3.12"
+dependencies = []</code></pre>
+</section>
+<section id="uv-run" class="level3">
+<h3 class="anchored" data-anchor-id="uv-run">uv run</h3>
+<p><code>uv run</code> creates a virtual environment and a uv.lock file when <code>uv run</code> is used first time.</p>
+<p>uv run main.py</p>
+<p><code>uv.lock</code> file stores the project metadata such as dependencies in the project with their exact versions. It is managed by uv itself and not edited manually. This ensures same version of the dependencies will be used by developers with no version mismatch.</p>
+</section>
+<section id="to-check-the-version-of-your-project" class="level3">
+<h3 class="anchored" data-anchor-id="to-check-the-version-of-your-project">To check the version of your project</h3>
+<p>uv version</p>
 
 
 </section>
