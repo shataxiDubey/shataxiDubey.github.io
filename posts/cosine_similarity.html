@@ -8,9 +8,9 @@
 
 <meta name="author" content="Shataxi Dubey">
 <meta name="dcterms.date" content="2026-04-26">
-<meta name="description" content="A neural network based sparse embedding generator. An ideal algorithm for keyword matching in RAG.">
+<meta name="description" content="Dense embedding to capture the semantic between the query and the documents in RAG.">
 
-<title>SPLADE – Shataxi Dubey</title>
+<title>Dense embedding – Shataxi Dubey</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -321,17 +321,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">SPLADE</h1>
+      <h1 class="title">Dense embedding</h1>
                   <div>
         <div class="description">
-          A neural network based sparse embedding generator. An ideal algorithm for keyword matching in RAG.
+          Dense embedding to capture the semantic between the query and the documents in RAG.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">SPLADE</div>
-                <div class="quarto-category">sparse embedding</div>
+                <div class="quarto-category">dense embedding</div>
                 <div class="quarto-category">retireval</div>
-                <div class="quarto-category">keyword matching</div>
+                <div class="quarto-category">semantic matching</div>
+                <div class="quarto-category">topic matching</div>
               </div>
                   </div>
   </div>
@@ -371,143 +371,117 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="24aa452e" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastembed <span class="im">import</span> SparseTextEmbedding</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/shataxi/practise/bigredsky-ATS/bigredsky-backend/.venv/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+<div id="10cd511a" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>True</code></pre>
 </div>
 </div>
-<p>There are multiple SPLADE models</p>
-<p>model_id=“naver/splade-v3”, it requires some permission</p>
-<p>model_id=“naver/splade-cocondenser-selfdistil”, it is the best SPLADE model</p>
-<p>But, we will use the model_id=prithivida/Splade_PP_en_v1</p>
-<div id="cbf77447" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">"prithivida/Splade_PP_en_v1"</span>)  </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sparse_embedding_model<span class="op">=</span>SparseTextEmbedding(model_name<span class="op">=</span><span class="st">"prithivida/Splade_PP_en_v1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Fetching 5 files: 100%|██████████| 5/5 [00:00&lt;00:00, 45294.86it/s]</code></pre>
+<div id="7a94474d" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = '''</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ● Classroom Management ● Conflict Resolution ● Student Engagement and Motivation ● Lesson Plan Execution ● Multitasking and Organization ● Compassion and Patience ● Creative Problem Solving ● Proficiency with Microsoft Office and basic educational tools ● Strong communication and interpersonal skills ● Ability to work with students from diverse backgrounds</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># '''</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills='''Technical Skills ● Cloud &amp; Devops ○ Kubernetes ○ EKS, Minikube, K3s ○ ArgoCD &amp; GitOps ○ Helm Charts ○ CI-CD Pipelines | Gitlab CI | Github Actions ○ IaC - Terraform, Cloudformation ○ AWS Cloud Services - Solutions Architect Associate (AWS Certified) ○ System Design and Architecture ○ Decentralized Apps ○ Monitoring - Grafana, Loki, Prometheus ● Web3 and Blockchain ○ EVM chains | Ethereum | Polygon ○ Solidity Smart Contracts | Hardhat ○ SSI (Self Sovereign Identity) - Verifiable Credentials, VPs, OpenID and w3c standards ○ DID protocols, Cryptography, Privado iD ○ Selective Disclosure and Zero Knowledge Proofs ○ Private Chains | Hyperledger Besu ○ Chainlink, The Graph Protocol, Ocean Protocol, Uniswap, AAVE, more ○ OpenZeppelin Contracts | Defi | NFTs | DAOs ○ Upgradable Smart Contracts, Account Abstraction ○ Decentralized Storage | IPFS ○ NodeJS / Typescript - Restful APIs ○ Blockchain Backend Services ● AI and Development Tools ○ Claude Code (skills, agents, workflows) ○ Antigravity/Cursor, AI-assisted Development ○ Prompt Engineering Other Skills ● Project Management ● Solutions Architect ● System Design and Architecture'''</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_work_exp='''Work experience A) Cloud, DevOps and Blockchain @ smartSense Consulting Solutions (2022 - Present) Projects: ● PredictSwitch - DevOps ○ Project: AI-powered recruitment platform for financial advisors. ○ Tech Stack: AWS, Terraform, Github Actions, ArgoCD, Helm Charts ○ Responsibilities: i. Manage AWS Infrastructure using terraform for consistent and reproducible environments ii. Managing K8S cluster using kubeadm on AWS servers iii. Prepare Github Actions for all applications for CI-CD pipelines iv. Integrated ArgoCD for GitOps-based continuous delivery ● Dynamo - DevOps and Backend ○ Project: Aggregated marketplace for cloud service providers across the EU region. ○ Tech Stack: Kubernetes, Helm Charts, ArgoCD, Gitlab CI, Hashicorp Vault, Loki-stack, Gaia-X services and more ○ Responsibilities: i. Managing Different Environments and making sure all the Apps are up and running ii. Designing efficient automation pipelines for easy deployment of the apps and environment cleanups iii. Self-Hosted Gitlab runners for various pipelines iv. Release management with Gitlab, JIRA and various automation tools v. Worked on NodeJS backend responsible for cryptographic operations used to sign Verifiable Credentials and get Compliance from Gaia-X services vi. Worked on various open source tools and tech including Saleor components(marketplace), Gaia-X Services for SSI and VCs for different service offerings, Backend and Frontend applications (GraphQL APIs) vii. Logging and Monitoring - Grafana and loki-stack for monitoring apps and getting alerts ● Ostrich AI - DevOps and Team Management ○ Project: Unified compliant platform for secure AI deployment, on-demand compute scaling, and custom ML/GenAI model development ○ Tech Stack: Kubernetes, Minikube, AWS Cloud services, Blockchain(Besu), NFTs, AI/ML ○ Responsibilities: i. Team management and coordination - Coordinated with the Client to understand the business requirements and refine them, and then conveying workable functionalities/features to the development teams including AI/ML, Backend and Frontend Teams ii. Worked on smart contracts and services which are used to tokenize Data Assets and track their usage using blockchain - This is a Patented(IP) Technology now! iii. Also worked on a concept of Decentralized network of hardwares which can be used to run AI/ML jobs on them for an incentive in a compliant manner ● smartProof - Web3 and Backend ○ Project: Blockchain-based certification anchoring engine on Ethereum and Polygon ○ Tech Stack: Solidity Smart Contracts, ETH &amp; Polygon Chains, NodeJS Backend, Hardhat ○ Production Running Application which is a certification anchoring engine on Ethereum and Polygon Blockchains ○ Upgradable Smart Contracts and Meta Transactions(Gasless txs) ○ Gas Optimization, Backend functionalities, Key management and more ● Gaia-X - SSI, Cryptography, Backend ○ Project: Open federated ecosystem enabling self-sovereign identity and compliant data exchange across EU region ○ Gaia-X focuses on SSI and open federated eco-systems in the European region where data can flow freely but in a fully compliant manner ○ Got to work on various new age technologies and concepts like SSI - Self Sovereign Identity, Verifiable Credentials and Verifiable Presentations ○ NodeJS, NestJS, GxDCH - Gaia-X Digital Clearing House ● XFSC - DevOps, SSI ○ We were part of a workshop which was focused on using the XFSC components, their internal workings and showcasing their deployment on cloud ○ Worked on about 25 of XFSC apps/components and tools across multiple languages which made the whole XFSC architecture ● Ocean Protocol - POC ○ Developed and worked on a POC using Ocean protocol which is basically a Smart Contract protocol used to tokenize Data Assets(AI models and algorithms) on Chain and perform Computations on them in isolated environments to preserve data privacy ● NFT Marketplace - POC ○ Initial learnings in blockchain tools and tech including Smart Contracts, ERC 721 NFTs, Indexing tools to query blockchain B) Trainee Software Engineer @ India Film Project - Asia's Largest Content Festival (1 year) ● Tech Stack: Wordpress ● Role &amp; Responsibilities: ○ Involved in developing WordPress Website ○ Managed the festival website and Worked with the Brands &amp; Solution team ○ Closely worked with presales and post sales team C) Software Intern @ Silverwing Technologies Pvt. Ltd (1 year) ● Tech Stack: JAVA ● Role &amp; Responsibilities ○ Developed a dynamic web project in MVC pattern using JAVA'''</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills='''● Bachelor’s degree in Education or a related field ● Valid State Teaching License (Texas) ● PRAXIS II Certification'''</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = '''EDUCATION AND LICENSING Jun 2008 - Present PRAXIS II Certification Austin, Texas Sep 2005 - Jun 2008 B.A. in Education Austin, Texas'''</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = '''</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Classroom Management Conflict Resolution Student Engagement and Motivation Lesson Plan Execution</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># '''</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills='''Cloud &amp; Devops Kubernetes EKS Minikube K3s  ArgoCD GitOps Helm Charts CI-CD Pipelines </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># '''</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "happy"</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "sad"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "Certified Kubernetes Administrator"</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "CKA"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "machine learning engineer"</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "AI engineer"</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills="Strong Python skills"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills="Architected Python microservices, improved latency by 40%"</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "Experience with Kubernetes orchestration"</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "Managed AWS infrastructure, deployed 50+ microservices"</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "I do not want a java developer"</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "I am skilled in java"</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "I want a java developer"</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "I am skilled in java"</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div id="58474b5e" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> openai_embeddings_similarity(client, jd_req_skills, candidate_skills):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    resp <span class="op">=</span> client.embeddings.create(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                model<span class="op">=</span><span class="st">'text-embedding-3-small'</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                <span class="bu">input</span><span class="op">=</span>[jd_req_skills, candidate_skills],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    jd_skills_embedding <span class="op">=</span> resp.data[<span class="dv">0</span>].embedding</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    candidate_skills_embedding <span class="op">=</span> resp.data[<span class="dv">1</span>].embedding</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=========OpenAI Raw Text Similarity========"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    similarity <span class="op">=</span> np.dot(jd_skills_embedding, candidate_skills_embedding)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(similarity)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    similarity <span class="op">=</span> similarity <span class="op">/</span> (np.linalg.norm(jd_skills_embedding) <span class="op">*</span> np.linalg.norm(candidate_skills_embedding))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Similarity computed using numpy dot product: </span><span class="sc">{</span>similarity<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> np.array(jd_skills_embedding).reshape(<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)                                                                                       </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.array(candidate_skills_embedding).reshape(<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    similarity <span class="op">=</span> cosine_similarity(a, b)[<span class="dv">0</span>][<span class="dv">0</span>]   </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Similarity computed using scikit learn cosine similarity: </span><span class="sc">{</span>similarity<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Norm of a vector </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(jd_skills_embedding)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="9db489fa" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sparse_cosine_similarity(indices_a, values_a, indices_b, values_b):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    vec_a <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(indices_a, values_a))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    vec_b <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(indices_b, values_b))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dot product</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    common_indices <span class="op">=</span> <span class="bu">set</span>(vec_a.keys()) <span class="op">&amp;</span> <span class="bu">set</span>(vec_b.keys())</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=====common words====="</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    token_weights <span class="op">=</span> [</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    tokenizer.convert_ids_to_tokens(<span class="bu">int</span>(idx)) <span class="cf">for</span> idx <span class="kw">in</span> common_indices                                                                     </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token_weights)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    dot <span class="op">=</span> <span class="bu">sum</span>(vec_a[i] <span class="op">*</span> vec_b[i] <span class="cf">for</span> i <span class="kw">in</span> common_indices)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Magnitudes</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    mag_a <span class="op">=</span> <span class="bu">sum</span>(v <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> v <span class="kw">in</span> vec_a.values()) <span class="op">**</span> <span class="fl">0.5</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    mag_b <span class="op">=</span> <span class="bu">sum</span>(v <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> v <span class="kw">in</span> vec_b.values()) <span class="op">**</span> <span class="fl">0.5</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mag_a <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> mag_b <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot <span class="op">/</span> (mag_a <span class="op">*</span> mag_b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="45c72633" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="65b3be06" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = '''</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ● Classroom Management ● Conflict Resolution ● Student Engagement and Motivation ● Lesson Plan Execution ● Multitasking and Organization ● Compassion and Patience ● Creative Problem Solving ● Proficiency with Microsoft Office and basic educational tools ● Strong communication and interpersonal skills ● Ability to work with students from diverse backgrounds</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># '''</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills='''Technical Skills ● Cloud &amp; Devops ○ Kubernetes ○ EKS, Minikube, K3s ○ ArgoCD &amp; GitOps ○ Helm Charts ○ CI-CD Pipelines | Gitlab CI | Github Actions ○ IaC - Terraform, Cloudformation ○ AWS Cloud Services - Solutions Architect Associate (AWS Certified) ○ System Design and Architecture ○ Decentralized Apps ○ Monitoring - Grafana, Loki, Prometheus ● Web3 and Blockchain ○ EVM chains | Ethereum | Polygon ○ Solidity Smart Contracts | Hardhat ○ SSI (Self Sovereign Identity) - Verifiable Credentials, VPs, OpenID and w3c standards ○ DID protocols, Cryptography, Privado iD ○ Selective Disclosure and Zero Knowledge Proofs ○ Private Chains | Hyperledger Besu ○ Chainlink, The Graph Protocol, Ocean Protocol, Uniswap, AAVE, more ○ OpenZeppelin Contracts | Defi | NFTs | DAOs ○ Upgradable Smart Contracts, Account Abstraction ○ Decentralized Storage | IPFS ○ NodeJS / Typescript - Restful APIs ○ Blockchain Backend Services ● AI and Development Tools ○ Claude Code (skills, agents, workflows) ○ Antigravity/Cursor, AI-assisted Development ○ Prompt Engineering Other Skills ● Project Management ● Solutions Architect ● System Design and Architecture'''</span></span>
+<div id="0d55c1f7" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>jd_req_skills <span class="op">=</span> <span class="st">"I do not want a java developer"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>candidate_skills <span class="op">=</span> <span class="st">"I am skilled in java"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cosine similarity for JD </span><span class="sc">{</span>jd_req_skills<span class="sc">}</span><span class="ss"> and candidate_skills </span><span class="sc">{</span>candidate_skills<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>openai_embeddings_similarity(client, jd_req_skills, candidate_skills)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills='''● Bachelor’s degree in Education or a related field ● Valid State Teaching License (Texas) ● PRAXIS II Certification'''</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = '''EDUCATION AND LICENSING Jun 2008 - Present PRAXIS II Certification Austin, Texas Sep 2005 - Jun 2008 B.A. in Education Austin, Texas'''</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>jd_req_skills <span class="op">=</span> <span class="st">"I want a java developer"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>candidate_skills <span class="op">=</span> <span class="st">"I am skilled in java"</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "Certified Kubernetes Administrator"</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "CKA"</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># jd_req_skills = "machine learning engineer"</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># candidate_skills = "Artificial intelligence engineer"</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>jd_req_skills <span class="op">=</span> <span class="st">"Experience with Kubernetes orchestration"</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>candidate_skills <span class="op">=</span> <span class="st">"Managed AWS infrastructure, deployed 50+ microservices"</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> <span class="bu">list</span>(sparse_embedding_model.embed([jd_req_skills, candidate_skills]))                                                                                                                                    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="2a697697" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>jd_sparse <span class="op">=</span> results[<span class="dv">0</span>]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>candidate_sparse <span class="op">=</span> results[<span class="dv">1</span>]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(jd_sparse.indices)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(jd_sparse.values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cosine similarity for JD </span><span class="sc">{</span>jd_req_skills<span class="sc">}</span><span class="ss"> and candidate_skills </span><span class="sc">{</span>candidate_skills<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>openai_embeddings_similarity(client, jd_req_skills, candidate_skills)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ 1022  2007  2063  2189  2229  2299  2316  2514  2614  2638  2836  3004
-  3153  3194  3315  3325  3370  3466  3508  3850  4032  4164  4378  4543
-  5281  5677  6028  6189  6322  6512  6602  6907  7159  7241  7589  7603
- 13970]
-[6.67957842e-01 5.02769470e-01 9.84465554e-02 1.07767475e+00
- 1.16471696e+00 2.91791826e-01 4.91769649e-02 4.98197109e-01
- 2.42059282e-03 2.03349993e-01 2.53558844e-01 1.54326886e-01
- 5.77651978e-01 1.90327749e-01 3.02954823e-01 2.55235314e+00
- 2.13443618e-02 3.26343775e-01 1.06131005e+00 7.85874665e-01
- 2.20954323e+00 2.67894026e-02 1.30836979e-01 6.78200126e-02
- 1.05577260e-01 1.78682709e+00 2.49487787e-01 6.27155304e-01
- 1.45783818e+00 4.34518978e-02 4.22243416e-01 1.12758875e-01
- 2.12012386e+00 2.52186060e-01 2.14359894e-01 1.32606119e-01
- 2.22890830e+00]</code></pre>
+<pre><code>Cosine similarity for JD I do not want a java developer and candidate_skills I am skilled in java
+=========OpenAI Raw Text Similarity========
+0.5604065811329946
+Similarity computed using numpy dot product: 0.560503588679478
+Similarity computed using scikit learn cosine similarity: 0.560503588679478
+Norm of a vector 0.9995877295552451
+
+Cosine similarity for JD I want a java developer and candidate_skills I am skilled in java
+=========OpenAI Raw Text Similarity========
+0.6364499261881065
+Similarity computed using numpy dot product: 0.6361443178296838
+Similarity computed using scikit learn cosine similarity: 0.636144317829684
+Norm of a vector 1.0003751365017943</code></pre>
 </div>
 </div>
-<p>SPLADE gives all the words closer to the words in jd skills. If orchestration word is present, it is closely related to music, opera. This is the reason, why we see the words “music” and “opera” in the token weights</p>
-<div id="48beafa2" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map index → token for a sparse result                                                                                                </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>token_weights <span class="op">=</span> [</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    tokenizer.convert_ids_to_tokens(<span class="bu">int</span>(idx)) <span class="cf">for</span> idx <span class="kw">in</span> jd_sparse.indices                                                                        </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'======JD requires skills====='</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(token_weights)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(token_weights))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(jd_req_skills.split()))</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>token_weights <span class="op">=</span> [</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    tokenizer.convert_ids_to_tokens(<span class="bu">int</span>(idx)) <span class="cf">for</span> idx <span class="kw">in</span> candidate_sparse.indices                                                                        </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'======Candidate skills====='</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(token_weights)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(token_weights))</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(candidate_skills.split()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>======JD requires skills=====
-['8', 'with', '##e', 'music', '##es', 'song', 'band', 'feel', 'sound', '##ne', 'performance', 'theatre', 'dance', 'engine', 'musical', 'experience', '##ation', 'effect', '##tion', 'opera', 'orchestra', 'concert', 'audience', 'composer', 'experienced', '##ber', 'technique', 'symphony', 'experiences', 'arrangement', 'instrument', 'genre', '##net', 'ensemble', 'conductor', 'emotion', 'ku']
-37
-4
-======Candidate skills=====
-['+', '##s', 'many', 'company', 'small', 'service', '2000', '50', '40', 'network', 'management', 'technology', 'systems', 'industry', 'key', '500', 'manager', 'managed', '45', '80', 'equipment', 'capacity', 'software', 'vehicle', 'brand', 'plus', 'fifty', 'strategy', 'manage', 'infrastructure', 'deployed', '##vic', '##ser', 'hardware', 'deployment', 'micro', 'deploy', 'aw']
-38
-6</code></pre>
-</div>
-</div>
-<p>The cosine similarity computed here will always be greater than 0 because Term frequency and inverse document frequency are always positive. If the cosine similarity is close to 0, then words are unrelated. If the cosine similarity is close to 1, then words are related.</p>
-<div id="b12d313a" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>similarity <span class="op">=</span> sparse_cosine_similarity(jd_sparse.indices, jd_sparse.values, candidate_sparse.indices, candidate_sparse.values)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=====common words=====
-[]
-0.0</code></pre>
-</div>
-</div>
-<p>Difference between various sparse embedding model</p>
-<section id="unicoil-sparse-embeddings-for-comparison-with-splade-and-bm25" class="level4">
-<h4 class="anchored" data-anchor-id="unicoil-sparse-embeddings-for-comparison-with-splade-and-bm25">UniCOIL sparse embeddings (for comparison with SPLADE and BM25)</h4>
-<p>UniCOIL (Uni-Contextualized Inverted Index Language model): - Uses BERT to produce a CONTEXTUAL hidden state per token - Projects each token’s hidden state to a single scalar via Linear(hidden_size → 1) + ReLU - Only tokens present in the input get a weight — NO vocabulary expansion</p>
-<p>Where it sits between BM25 and SPLADE: BM25 — exact tokens, statistical weights (TF×IDF), no neural network UniCOIL — exact tokens, CONTEXTUAL learned weights, neural (BERT backbone) SPLADE — expands to related vocab terms, contextual weights, neural (BERT backbone)</p>
-<p>Example: “Kubernetes orchestration” BM25: activates → [kubernetes, orchestration] (weights: TF×IDF counts) UniCOIL: activates → [ku, ##ber, ##netes, or, ##che, ##stration, …] (same WordPiece subwords as SPLADE, but weights are contextual scalars) SPLADE: activates → [kubernetes, orchestration, container, cluster, k8, …] (expands to semantically related vocabulary)</p>
-<p>NOTE: The linear layer below uses random weights since loading the full pre-trained checkpoint (castorini/unicoil-noexp-msmarco-passage) requires mapping custom state-dict keys. For production use, load that checkpoint. The architecture and token activation pattern are correct regardless.</p>
+<p>The norm of the vector is close to 1 because OpenAI returns normalized vectors</p>
+<p>Here we see, when the JD is “I do not want a java developer” and the candidate skill is “I am skilled in Java”, the cosine similarity is 0.56. It is not close to 0 even when the logically the two sentences are opposite. This is happening because vector representation of the sentences is based on the context in which they appear. The two statements appear in the same context. They talk about the same topic i.e “Java Developer”. The two sentences share the same semantic space, hence having cosine similarity &gt; 0.5</p>
+<p>However, when the JD is “I want a java developer” and the candidate skill is “I am skilled in Java”, the cosine similarity improves to 0.64. This happens because they are more semantically closer and the JD does not include the “not” which aligns the two sentences at both the word and the intent level.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -4,6 +4,7 @@
     "items": [
       "/posts/BM25.html",
       "/posts/RRF.html",
+      "/posts/cosine_similarity.html",
       "/posts/SPLADE.html",
       "/posts/uv_package_manager.html",
       "/posts/vit.html",
