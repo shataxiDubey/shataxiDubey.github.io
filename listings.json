@@ -2,6 +2,9 @@
   {
     "listing": "/blogs.html",
     "items": [
+      "/posts/BM25.html",
+      "/posts/RRF.html",
+      "/posts/SPLADE.html",
       "/posts/uv_package_manager.html",
       "/posts/vit.html",
       "/posts/positional_encoding.html",
