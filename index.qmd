@@ -20,7 +20,7 @@ My interest lies in Machine Learning, Computer Vision, and Vision-Language Model
 
 These days, I am deepening my understanding of how VLMs are designed and how they can be leveraged for versatile tasks, including object detection and beyond.
 
-
+Currently I am working on Voice Agents and RAG based systems.
 
 
 ## Education
