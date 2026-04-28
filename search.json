@@ -4,7 +4,14 @@
     "href": "index.html",
     "title": "Shataxi Dubey",
     "section": "",
-    "text": "Hi, I am Shataxi Dubey — an AI/ML Engineer at SmartSense Consulting Solutions, passionate about building intelligent systems that can hear, see, and understand the world through voice agents, vision-language models, and large language models.. I have experience developing enterprise-grade voice agents and RAG-based systems, and I’m continually deepening my understanding of how NLP can be leveraged to design smarter, more capable systems in today’s AI-driven engineering landscape. My interest lies in Machine Learning, NLP, Computer Vision, and Vision-Language Models (VLMs). During my Master’s thesis, I explored how VLMs can be applied to satellite imagery — a challenging and high-impact domain. Prior to that, I worked with models such as Faster R-CNN and YOLO to detect brick kilns in satellite images, contributing to efforts aimed at addressing a significant source of air pollution. ## Education\nM.Tech Computer Science and Engineering | Indian Institute of Technology Gandhinagar | Gandhinagar, Gujarat | July 2023 - June 2025\nB.Tech Computer Science and Engineering | University of Allahabad | Prayagraj, Uttar Pradesh | July 2018 - May 2022"
+    "text": "Hi, I am Shataxi Dubey — an AI/ML Engineer at SmartSense Consulting Solutions, passionate about building intelligent systems that can hear, see, and understand the world through voice agents, vision-language models, and large language models..\nI have experience developing enterprise-grade voice agents and RAG-based systems, and I’m continually deepening my understanding of how NLP can be leveraged to design smarter, more capable systems in today’s AI-driven engineering landscape.\nMy interest lies in Machine Learning, NLP, Computer Vision, and Vision-Language Models (VLMs). During my Master’s thesis, I explored how VLMs can be applied to satellite imagery — a challenging and high-impact domain. Prior to that, I worked with models such as Faster R-CNN and YOLO to detect brick kilns in satellite images, contributing to efforts aimed at addressing a significant source of air pollution."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Shataxi Dubey",
+    "section": "Education",
+    "text": "Education\nM.Tech Computer Science and Engineering | Indian Institute of Technology Gandhinagar | Gandhinagar, Gujarat | July 2023 - June 2025\nB.Tech Computer Science and Engineering | University of Allahabad | Prayagraj, Uttar Pradesh | July 2018 - May 2022"
   },
   {
     "objectID": "index.html#experience",
