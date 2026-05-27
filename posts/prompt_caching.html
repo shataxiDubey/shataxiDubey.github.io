@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shataxi Dubey">
-<meta name="dcterms.date" content="2024-08-01">
-<meta name="description" content="Non max suppression suppresses bounding box with non max confidence scores">
+<meta name="dcterms.date" content="2026-05-10">
+<meta name="description" content="A caching mechanism to save you cost">
 
-<title>Non max suppression – Shataxi Dubey</title>
+<title>Prompt Caching – Shataxi Dubey</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -286,15 +286,16 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Non max suppression</h1>
+      <h1 class="title">Prompt Caching</h1>
                   <div>
         <div class="description">
-          Non max suppression suppresses bounding box with non max confidence scores
+          A caching mechanism to save you cost
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">object detection</div>
-                <div class="quarto-category">nms</div>
+                <div class="quarto-category">prompt</div>
+                <div class="quarto-category">caching</div>
+                <div class="quarto-category">LLM</div>
               </div>
                   </div>
   </div>
@@ -312,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 1, 2024</p>
+        <p class="date">May 10, 2026</p>
       </div>
     </div>
     
@@ -334,14 +335,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<ul>
-<li>Remove all the bounding boxes whose confidence is less than confidence threshld</li>
-<li>For a particular category, find the bounding box with highest confidence score</li>
-<li>Check its IOU with the other bounding boxes of same category</li>
-<li>If the IOU &gt; IOU threshold, this means that the box is bounding the same object in such case, we remove or suppress these boxes.</li>
-</ul>
+<p>Prompt caching mean caching the KV cache in transformers. KV cahe is the caching of Key-Value pairs in attention computation</p>
+<section id="how-is-ollama-different-from-hugging-face-does-ollama-download-the-models-locally-on-our-system-like-hugging-face" class="level4">
+<h4 class="anchored" data-anchor-id="how-is-ollama-different-from-hugging-face-does-ollama-download-the-models-locally-on-our-system-like-hugging-face">How is ollama different from hugging face, does ollama download the models locally on our system like hugging face?</h4>
+<p>ollama gives you infrastructure which hugging face does not.By infrastructure I mean, if I want to use qwen for helping me in coding task then I have to set up the state, maintain a list of ai-human message , in case of hugging face. But, if I am using ollama, then it provides the chat interface and it maintains the state on its own. ollama reduces the engineering work.</p>
+<p>still not clear!!!</p>
+<p>Prompt caching helps when requests per minute is huge</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

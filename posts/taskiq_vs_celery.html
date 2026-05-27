@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shataxi Dubey">
-<meta name="dcterms.date" content="2024-08-01">
-<meta name="description" content="Non max suppression suppresses bounding box with non max confidence scores">
+<meta name="dcterms.date" content="2026-05-17">
+<meta name="description" content="A comparative study of taskiq and celery">
 
-<title>Non max suppression – Shataxi Dubey</title>
+<title>Taskiq vs Celery – Shataxi Dubey</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -286,15 +286,16 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Non max suppression</h1>
+      <h1 class="title">Taskiq vs Celery</h1>
                   <div>
         <div class="description">
-          Non max suppression suppresses bounding box with non max confidence scores
+          A comparative study of taskiq and celery
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">object detection</div>
-                <div class="quarto-category">nms</div>
+                <div class="quarto-category">taskiq</div>
+                <div class="quarto-category">celery</div>
+                <div class="quarto-category">task queues</div>
               </div>
                   </div>
   </div>
@@ -312,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 1, 2024</p>
+        <p class="date">May 17, 2026</p>
       </div>
     </div>
     
@@ -334,12 +335,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<ul>
-<li>Remove all the bounding boxes whose confidence is less than confidence threshld</li>
-<li>For a particular category, find the bounding box with highest confidence score</li>
-<li>Check its IOU with the other bounding boxes of same category</li>
-<li>If the IOU &gt; IOU threshold, this means that the box is bounding the same object in such case, we remove or suppress these boxes.</li>
-</ul>
+<p>What is a task queue?</p>
+<p>Taskiq is an asynchronous distributed task queue</p>
+<p>for this, we need a broker. Broker is an object that communicate to worker using distributed queues</p>
+<p>Redis, RabbitMQ, Kafka are the queues and there are brokers for these queues.</p>
+<p>There are 4 terms in it: message, broker, task, queue, worker. Which one works when ?</p>
+<ol type="1">
+<li><p>Does broker add the message in the queue and the worker takes up the message from the queue wheneve it wants? Ans : Client adds the task to the task queue , this task queue is built in the broker (Redis, RabbitMQ). The worker continuously polls the broker and takes up the tasks from the task queue whenever there is a task in it.</p></li>
+<li><p>If there are 4 workers then each worker can take up the message from the queue and execute it. That is, at a time 4 messages can be executed? Yes, if there are 4 workers then each can take up the task and execute it in parallel.</p></li>
+<li><p>Does each worker operate asynchronously. Suppose there is only one worker, but the number of messages in the queue is 4. The worker executes the first message, the first message has an I/O operation. As the worker is aynchronous then it will start executing the next task while the first task is doing its I/O operation. is it possible that a single worker takes up all the 4 tasks.</p></li>
+</ol>
+<p>Taskiq will do but celery will not.</p>
+<p>Read about GIL Asyncio events</p>
+<p>import asyncio</p>
+<p>from taskiq_nats import JetStreamBroker</p>
+<p>broker = JetStreamBroker(“nats://localhost:4222”, queue=“my_queue2”)</p>
+<p><span class="citation" data-cites="broker.task">@broker.task</span> async def my_task(a: int, b: int) -&gt; None: print(“AB”, a + b)</p>
+<p>async def main(): await broker.startup()</p>
+<pre><code>await my_task.kiq(1, 2)
+
+await broker.shutdown()</code></pre>
+<p>if <strong>name</strong> == “<strong>main</strong>”: asyncio.run(main())</p>
+<p>In this code, what is broker, queue, task ,message and worker.</p>
+<p>queue is Redis. Task is addition operation.</p>
+<p>(1,2) is the message which is queue in the Redis queue.</p>
+<p>Worker is a process that executes the addition Task.</p>
+<p>Taskiq is prefered when the background processing mainly involves API calling.For asynchronous project, Taskiq is prefered.</p>
+<p>Celery is prefered when background task is CPU intensive. For fully synchronous project, celery is prefered.</p>
+<p>redis commander to view messages in redis</p>
 
 
 

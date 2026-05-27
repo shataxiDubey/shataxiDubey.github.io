@@ -1,83 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shataxiDubey.github.io/index.html</loc>
-    <lastmod>2026-04-28T13:44:14.371Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
-    <lastmod>2026-04-28T13:44:14.386Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/SPLADE.html</loc>
-    <lastmod>2026-04-28T13:44:14.386Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/cosine_similarity.html</loc>
-    <lastmod>2026-04-28T13:44:14.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/python-format-specifier.html</loc>
-    <lastmod>2026-04-28T13:44:14.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/object_detection_pipeline.html</loc>
-    <lastmod>2026-04-28T13:44:14.406Z</lastmod>
+    <loc>https://shataxiDubey.github.io/blogs.html</loc>
+    <lastmod>2026-05-27T07:27:05.877Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/positional_encoding.html</loc>
-    <lastmod>2026-04-28T13:44:14.407Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/mean_average_precision.html</loc>
-    <lastmod>2026-04-28T13:44:14.405Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/BM25.html</loc>
-    <lastmod>2026-04-28T13:44:14.371Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/Image-transformation.html</loc>
-    <lastmod>2026-04-28T13:44:14.385Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/non_max_suppression.html</loc>
-    <lastmod>2026-04-28T13:44:14.405Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/LSTM.html</loc>
-    <lastmod>2026-04-28T13:44:14.385Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/vlm_sizes.html</loc>
-    <lastmod>2026-04-28T13:44:14.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/uv_package_manager.html</loc>
-    <lastmod>2026-04-28T13:44:14.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/transformers.html</loc>
-    <lastmod>2026-04-28T13:44:14.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shataxiDubey.github.io/posts/vit.html</loc>
-    <lastmod>2026-04-28T13:44:14.408Z</lastmod>
+    <lastmod>2026-05-27T07:27:05.915Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/ReLU_activation.html</loc>
-    <lastmod>2026-04-28T13:44:14.386Z</lastmod>
+    <lastmod>2026-05-27T07:27:05.894Z</lastmod>
   </url>
   <url>
-    <loc>https://shataxiDubey.github.io/posts/precision_recall.html</loc>
-    <lastmod>2026-04-28T13:44:14.407Z</lastmod>
+    <loc>https://shataxiDubey.github.io/posts/mean_average_precision.html</loc>
+    <lastmod>2026-05-27T07:27:05.913Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/SOTA_object_detection.html</loc>
+    <lastmod>2026-05-27T07:27:05.894Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/SPLADE.html</loc>
+    <lastmod>2026-05-27T07:27:05.894Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/uv_package_manager.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/python-format-specifier.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/vit.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/prompt_caching.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/LSTM.html</loc>
+    <lastmod>2026-05-27T07:27:05.893Z</lastmod>
   </url>
   <url>
     <loc>https://shataxiDubey.github.io/posts/RRF.html</loc>
-    <lastmod>2026-04-28T13:44:14.385Z</lastmod>
+    <lastmod>2026-05-27T07:27:05.893Z</lastmod>
   </url>
   <url>
-    <loc>https://shataxiDubey.github.io/blogs.html</loc>
-    <lastmod>2026-04-28T13:44:14.369Z</lastmod>
+    <loc>https://shataxiDubey.github.io/posts/transformers.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/cosine_similarity.html</loc>
+    <lastmod>2026-05-27T07:27:05.894Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/non_max_suppression.html</loc>
+    <lastmod>2026-05-27T07:27:05.913Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/taskiq_vs_celery.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/BM25.html</loc>
+    <lastmod>2026-05-27T07:27:05.879Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/vlm_sizes.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/Image-transformation.html</loc>
+    <lastmod>2026-05-27T07:27:05.893Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/ollama_vs_unsloth_vs_hf.html</loc>
+    <lastmod>2026-05-27T07:27:05.914Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/precision_recall.html</loc>
+    <lastmod>2026-05-27T07:27:05.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/posts/object_detection_pipeline.html</loc>
+    <lastmod>2026-05-27T07:27:05.914Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shataxiDubey.github.io/index.html</loc>
+    <lastmod>2026-05-27T07:27:05.879Z</lastmod>
   </url>
 </urlset>

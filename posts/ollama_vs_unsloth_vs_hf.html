@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shataxi Dubey">
-<meta name="dcterms.date" content="2024-08-01">
-<meta name="description" content="Non max suppression suppresses bounding box with non max confidence scores">
+<meta name="dcterms.date" content="2026-05-27">
+<meta name="description" content="Ollama vs Unsloth vs Hugging Face">
 
-<title>Non max suppression – Shataxi Dubey</title>
+<title>Ollama vs Unsloth vs Hugging Face – Shataxi Dubey</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -286,15 +286,16 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Non max suppression</h1>
+      <h1 class="title">Ollama vs Unsloth vs Hugging Face</h1>
                   <div>
         <div class="description">
-          Non max suppression suppresses bounding box with non max confidence scores
+          Ollama vs Unsloth vs Hugging Face
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">object detection</div>
-                <div class="quarto-category">nms</div>
+                <div class="quarto-category">ollama</div>
+                <div class="quarto-category">HF</div>
+                <div class="quarto-category">unsloth</div>
               </div>
                   </div>
   </div>
@@ -312,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 1, 2024</p>
+        <p class="date">May 27, 2026</p>
       </div>
     </div>
     
@@ -335,10 +336,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 <ul>
-<li>Remove all the bounding boxes whose confidence is less than confidence threshld</li>
-<li>For a particular category, find the bounding box with highest confidence score</li>
-<li>Check its IOU with the other bounding boxes of same category</li>
-<li>If the IOU &gt; IOU threshold, this means that the box is bounding the same object in such case, we remove or suppress these boxes.</li>
+<li>Ollama is used for inferencing. It gives quantized open source model for creating chat applications.</li>
+<li>Unsloth is used for inferencing and training both.. Unsloth gives quantized model.</li>
+<li>HF gives access to open source models wthout any quantization. Useful for training and inferencing. It also provides the flexibility to quantize the models.</li>
 </ul>
 
 
