@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shataxi Dubey">
-<meta name="dcterms.date" content="2025-07-22">
-<meta name="description" content="Positional encoding used for encoding where the tokens appear in a sentence">
+<meta name="dcterms.date" content="2026-08-03">
+<meta name="description" content="A relation between Alembic and ORM">
 
-<title>Positional Encoding in transformers – Shataxi Dubey</title>
+<title>Database Versioning – Shataxi Dubey</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,41 +28,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -116,35 +81,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -353,15 +289,17 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Positional Encoding in transformers</h1>
+      <h1 class="title">Database Versioning</h1>
                   <div>
         <div class="description">
-          Positional encoding used for encoding where the tokens appear in a sentence
+          A relation between Alembic and ORM
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">positional encoding</div>
-                <div class="quarto-category">transformers</div>
+                <div class="quarto-category">databse</div>
+                <div class="quarto-category">versioning</div>
+                <div class="quarto-category">alembic</div>
+                <div class="quarto-category">schema</div>
               </div>
                   </div>
   </div>
@@ -379,7 +317,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 22, 2025</p>
+        <p class="date">August 3, 2026</p>
       </div>
     </div>
     
@@ -395,7 +333,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#positional-embedding" id="toc-positional-embedding" class="nav-link active" data-scroll-target="#positional-embedding">Positional embedding</a></li>
+  <li><a href="#alembic-vs.-the-async-orm" id="toc-alembic-vs.-the-async-orm" class="nav-link active" data-scroll-target="#alembic-vs.-the-async-orm">Alembic vs.&nbsp;the Async ORM</a>
+  <ul class="collapse">
+  <li><a href="#context" id="toc-context" class="nav-link" data-scroll-target="#context">Context</a></li>
+  <li><a href="#alembic-vs.-sqlalchemy-orm-not-alternatives" id="toc-alembic-vs.-sqlalchemy-orm-not-alternatives" class="nav-link" data-scroll-target="#alembic-vs.-sqlalchemy-orm-not-alternatives">Alembic vs.&nbsp;SQLAlchemy ORM — not alternatives</a>
+  <ul class="collapse">
+  <li><a href="#why-alembic-is-needed-even-with-the-orm" id="toc-why-alembic-is-needed-even-with-the-orm" class="nav-link" data-scroll-target="#why-alembic-is-needed-even-with-the-orm">Why Alembic is needed even with the ORM</a></li>
+  <li><a href="#what-alembic-gives-you" id="toc-what-alembic-gives-you" class="nav-link" data-scroll-target="#what-alembic-gives-you">What Alembic gives you</a></li>
+  </ul></li>
+  <li><a href="#when-alembic-doesnt-apply-cant-help" id="toc-when-alembic-doesnt-apply-cant-help" class="nav-link" data-scroll-target="#when-alembic-doesnt-apply-cant-help">When Alembic doesn’t apply / can’t help</a></li>
+  <li><a href="#mariadbmysql-specific-caveats-this-projects-actual-db" id="toc-mariadbmysql-specific-caveats-this-projects-actual-db" class="nav-link" data-scroll-target="#mariadbmysql-specific-caveats-this-projects-actual-db">MariaDB/MySQL-specific caveats (this project’s actual DB)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -407,113 +355,64 @@ window.Quarto = {
 
 
 
-<section id="positional-embedding" class="level2">
-<h2 class="anchored" data-anchor-id="positional-embedding">Positional embedding</h2>
-<p>Positional embedding is used to encode the position of a token in a sentence using sinusoidals.</p>
-<p><span class="math inline">\(PE_{[k, 2i]} = sin(\frac{k}{n^\frac{2i}{d}})\)</span></p>
-<p><span class="math inline">\(PE_{[k, 2i + 1]} = cos(\frac{k}{n^\frac{2i}{d}})\)</span></p>
-<p>k is the position of the token in the sentence. n is a constant. i is the index in d dimensional vector. It ranges from 0 to <span class="math inline">\(\frac{d}{2}\)</span></p>
-<p>If d is the dimension for the position embedding then the d- dimensional vector will be represented with pair of sine and cosine. Hence there will be d/2 sine-cosine pair in the vector.</p>
-<p><span class="math inline">\(PE_k\)</span> = <span class="math inline">\(\begin{bmatrix}sin(k)\\ cos(k) \\ sin(\frac{k}{n^\frac{2}{d}})\\ cos(\frac{k}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{k}{n^\frac{2\frac{d}{2}}{d}})\\ cos(\frac{k}{n^\frac{2\frac{d}{2}}{d}}) \end{bmatrix}\)</span></p>
-<p>sine function represents the even positions in the d-dimensional vector while cosine function represents the odd position in the d-dimensional vector.</p>
-<div id="98400a8c" class="cell" data-execution_count="71">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="49df56d2" class="cell" data-execution_count="72">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> np.arange(<span class="dv">100</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encoding(idx, d):</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    embedding_values <span class="op">=</span> []</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(d<span class="op">//</span><span class="dv">2</span>):</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            embedding_values.append(np.sin(idx <span class="op">/</span> (<span class="dv">1000000</span><span class="op">**</span>(<span class="dv">2</span><span class="op">*</span>i<span class="op">/</span>d))))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            embedding_values.append(np.cos(idx <span class="op">/</span> (<span class="dv">1000000</span><span class="op">**</span>(<span class="dv">2</span><span class="op">*</span>i<span class="op">/</span>d))))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(embedding_values)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> final():</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      final_embedding <span class="op">=</span> []</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            final_embedding.append(encoding(i, <span class="dv">512</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> np.array(final_embedding)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> final()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="3020fa45" class="cell" data-execution_count="73">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> plt.matshow(x)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.gcf().colorbar(cax)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Embedding Dimension'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Index of tokens'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="positional_encoding_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="c4c26ca7" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> ax.matshow(x.T)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Index of tokens'</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Embedding Dimension'</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">200</span>,<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="positional_encoding_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(PE_0\)</span> = <span class="math inline">\(\begin{bmatrix}0\\ 1 \\ 0\\ 1 \\. \\. \\. \\ 0 \\ 1 \end{bmatrix}\)</span> <span class="math inline">\(PE_1\)</span> = <span class="math inline">\(\begin{bmatrix}sin(1)\\ cos(1) \\ sin(\frac{1}{n^\frac{2}{d}})\\ cos(\frac{1}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(PE_2\)</span> = <span class="math inline">\(\begin{bmatrix}sin(2)\\ cos(2) \\ sin(\frac{2}{n^\frac{2}{d}})\\ cos(\frac{2}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span> <span class="math inline">\(.............\)</span> <span class="math inline">\(PE_{512}\)</span> = <span class="math inline">\(\begin{bmatrix}sin(512)\\ cos(512) \\ sin(\frac{512}{n^\frac{2}{d}})\\ cos(\frac{512}{n^\frac{2}{d}}) \\. \\. \\. \\ sin(\frac{1}{n})\\ cos(\frac{1}{n}) \end{bmatrix}\)</span></p>
-<p>For all <span class="math inline">\(PE_{k}\)</span>,</p>
-<p>index i = 0 - follows sine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span> - follows cosine function with frequency 1 and wavelength <span class="math inline">\(2\pi\)</span></p>
-<p>index i = 1 - follows sine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n^\frac{2}{d}}\)</span> and wavelength <span class="math inline">\(2\pi{n^\frac{2}{d}}\)</span></p>
+<section id="alembic-vs.-the-async-orm" class="level1">
+<h1>Alembic vs.&nbsp;the Async ORM</h1>
+<section id="context" class="level2">
+<h2 class="anchored" data-anchor-id="context">Context</h2>
+<p>This project (<code>fosterclub-talent-api-ai-ats-service</code>) uses: - SQLAlchemy (async) with <code>DeclarativeBase</code> models in <code>app/core/database.py</code> - MariaDB as the database, accessed via <code>mysql+aiomysql://</code> (see <code>app/core/config.py:177</code>) - <code>alembic</code> listed as a dependency in <code>pyproject.toml</code>, but <strong>not yet initialized</strong> — there is no <code>alembic.ini</code> or <code>alembic/versions/</code> directory in the project, so no migration history currently exists.</p>
+<p>Note: <code>asyncpg</code> also appears in <code>pyproject.toml</code> but is unused — the project runs on MariaDB/aiomysql, not Postgres. Worth confirming if it’s dead weight and removing.</p>
+</section>
+<section id="alembic-vs.-sqlalchemy-orm-not-alternatives" class="level2">
+<h2 class="anchored" data-anchor-id="alembic-vs.-sqlalchemy-orm-not-alternatives">Alembic vs.&nbsp;SQLAlchemy ORM — not alternatives</h2>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li><strong>SQLAlchemy ORM</strong> defines what the schema <em>should</em> look like in Python (<code>ResumeParseJob</code>, <code>JDSession</code>, <code>RankingCriteria</code>, etc.) and lets the app read/write rows at runtime. It does not track schema <em>history</em> or apply changes to an existing database safely.</li>
+<li><strong>Alembic</strong> is the migration tool that turns a diff between your models and the live database into versioned, ordered, reviewable migration scripts, and applies/reverts them (<code>alembic upgrade head</code> / <code>alembic downgrade</code>).</li>
 </ul>
-<p>index i = d/2 - follows sine function with frequency <span class="math inline">\(\frac{1}{n}\)</span> and wavelength <span class="math inline">\(2\pi{n}\)</span> - follows cosine function with frequency <span class="math inline">\(\frac{1}{n}\)</span> and wavelength <span class="math inline">\(2\pi{n}\)</span></p>
-<p>This shows that the sine and cosine function frequency decrease as the indices go higher in the d-dimensional vector. We see higher variations in all the tokens for embedding index 0 ( faster changes in colour) and negligible variation for embedding index 512 (no change in colour)</p>
-<div id="00e7bee3" class="cell" data-execution_count="70">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_representation(x):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">all</span> <span class="op">=</span> []</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> x:</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> <span class="bu">list</span>(np.binary_repr(i, width<span class="op">=</span><span class="dv">10</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> np.array(tmp)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> tmp[::<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">all</span>.append(tmp)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(<span class="bu">all</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> binary_representation(<span class="bu">range</span>(<span class="dv">100</span>))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x.astype(<span class="bu">float</span>)  </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>cax <span class="op">=</span> plt.matshow(x.T)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.gcf().colorbar(cax)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Index of tokens'</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Embedding dimension'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="positional_encoding_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>From both the plots (related to sinusoidal function and the binary function), we cn see that index 0 of embedding dimension has the highest frequency. This shows that sinusoidal functions can represent positional embedding similar to binary representation.</p>
-<p>We prefer sinusoidal representation because it exhibits linearity in relationship.</p>
-<p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t + \theta) \\ cos(t + \theta) \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(W * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(\begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix} * \begin{bmatrix} sin(t) \\ cos(t) \end{bmatrix}  = \begin{bmatrix} sin(t)cos(\theta) + cos(t)sin(\theta) \\ cos(t)cos(\theta) - sin(t)sin(\theta) \end{bmatrix}\)</span></p>
-<p><span class="math display">\[ W = \begin{bmatrix} cos(\theta) &amp; sin(\theta) \\ - sin(\theta) &amp;  cos(\theta)\end{bmatrix}\]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is a constant</p>
-<p>As <span class="math inline">\(PE_{t}\)</span> is known then <span class="math inline">\(PE_{t + \theta}\)</span> can also be determined</p>
+<section id="why-alembic-is-needed-even-with-the-orm" class="level3">
+<h3 class="anchored" data-anchor-id="why-alembic-is-needed-even-with-the-orm">Why Alembic is needed even with the ORM</h3>
+<ul>
+<li><code>Base.metadata.create_all()</code> only creates tables that don’t exist yet — it never alters existing tables. Adding a column to a model does nothing to a table that’s already in the database.</li>
+<li>Alembic generates the diff (<code>alembic revision --autogenerate</code>), lets you review/edit it, then applies it consistently across dev/staging/prod.</li>
+</ul>
+</section>
+<section id="what-alembic-gives-you" class="level3">
+<h3 class="anchored" data-anchor-id="what-alembic-gives-you">What Alembic gives you</h3>
+<ul>
+<li><strong>Repeatable deploys</strong> — same migrations run in every environment, no schema drift.</li>
+<li><strong>Team coordination</strong> — parallel schema changes become separate migration files instead of manual <code>ALTER TABLE</code> reconciliation.</li>
+<li><strong>Safe evolution of existing data</strong> — renames, backfills, adding <code>NOT NULL</code> to populated tables — things <code>create_all()</code> can’t do.</li>
+<li><strong>Auditable history</strong> — <code>git log</code> on <code>alembic/versions/</code> is the schema changelog.</li>
+<li><strong>Rollback</strong> — <code>alembic downgrade -1</code> if a migration goes wrong in production.</li>
+</ul>
+</section>
+</section>
+<section id="when-alembic-doesnt-apply-cant-help" class="level2">
+<h2 class="anchored" data-anchor-id="when-alembic-doesnt-apply-cant-help">When Alembic doesn’t apply / can’t help</h2>
+<ol type="1">
+<li><strong>Non-relational stores</strong> — Alembic only manages SQLAlchemy-mapped relational schema. It has no concept of Qdrant collections, Redis cache keys/TTLs, or Celery/TaskIQ job/queue state. Those need their own versioning approach.</li>
+<li><strong>Multi-tenant / sharded databases</strong> — Alembic doesn’t fan a migration out across multiple databases/tenants on its own; you’d script that orchestration yourself (e.g.&nbsp;loop <code>alembic upgrade head</code> per connection string).</li>
+<li><strong>Large-table structural changes on live traffic</strong> — Alembic will run whatever SQL you give it, including a lock-heavy <code>ALTER TABLE</code>, without warning you. Safe multi-step patterns (add nullable column → backfill in batches → add constraint → drop old column) have to be hand-written.</li>
+<li><strong>Changes autogenerate can’t detect reliably</strong>:
+<ul>
+<li>Renames (seen as drop + add, loses data unless manually fixed with <code>op.alter_column(..., new_column_name=...)</code>)</li>
+<li>Data backfills/transformations (no “old value” to diff against — write custom Python in the migration)</li>
+<li>Some dialect-specific objects: enum types, certain index/collation nuances, default-value comparisons</li>
+</ul></li>
+<li><strong>Non-DDL runtime config</strong> — feature flags, cache TTLs, queue definitions — outside Alembic’s scope by design.</li>
+</ol>
+</section>
+<section id="mariadbmysql-specific-caveats-this-projects-actual-db" class="level2">
+<h2 class="anchored" data-anchor-id="mariadbmysql-specific-caveats-this-projects-actual-db">MariaDB/MySQL-specific caveats (this project’s actual DB)</h2>
+<p>Since this project runs on MariaDB via <code>aiomysql</code>, not Postgres, these matter more than the generic caveats above:</p>
+<ol type="1">
+<li><strong>DDL is not transactional.</strong> Most DDL statements (<code>ALTER TABLE</code>, <code>CREATE TABLE</code>, etc.) cause an implicit commit in MariaDB/MySQL and can’t be rolled back as part of a transaction. If a multi-statement migration fails partway through, <code>alembic downgrade</code> may not cleanly undo already-applied DDL — you can be left in a partial state requiring manual cleanup. Postgres, by contrast, has transactional DDL and is safer here.</li>
+<li><strong><code>ALTER TABLE</code> locks the whole table</strong> on most MariaDB versions/storage engines (unless the specific version/change qualifies for <code>ALGORITHM=INSTANT</code>/<code>INPLACE</code>). Schema changes on large, live tables can block reads/writes for the duration. For anything beyond a small table, use online-schema-change tooling (<code>pt-online-schema-change</code>, <code>gh-ost</code>) invoked from the migration, or split the change into safer steps — Alembic won’t do this automatically.</li>
+<li><strong>Weaker autogenerate support on the MySQL/MariaDB dialect</strong> compared to Postgres — enum types, some index/collation nuances, and default-value comparisons are more likely to produce a no-op or slightly wrong diff that needs manual correction.</li>
+<li><strong>Connection pool pressure</strong> — <code>app/core/config.py:179-181</code> notes that MariaDB gets flooded under concurrent load from pool sizing (<code>DB_POOL_SIZE</code> + <code>DB_MAX_OVERFLOW</code> per worker process). Any migration step that opens its own connection (e.g.&nbsp;autogenerate comparing live schema) should be mindful of this same constraint, though it’s a minor operational note rather than a blocker.</li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

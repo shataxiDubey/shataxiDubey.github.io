@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,14 +44,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d42e3a450557161d5337326f150af9d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a281eb49544d12beabaf1e29de1e447a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d42e3a450557161d5337326f150af9d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-189549ecd294ed9837df383a4b42e31c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e0e0cf18b6cad7aec17d5916d8cabd48.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-189549ecd294ed9837df383a4b42e31c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -345,7 +348,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(21)</span></div><div class="category" data-category="YXR0ZW50YXRpb24=">attentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Qk0yNQ==">BM25 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2FjaGluZw==">caching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2VsZXJ5">celery <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVuc2UlMjBlbWJlZGRpbmc=">dense embedding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Zm9ybWF0">format <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2F0ZXM=">gates <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SEY=">HF <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1hZ2Vz">images <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a2V5d29yZCUyMG1hdGNoaW5n">keyword matching <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TGluZWFyaXR5">Linearity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9yYQ==">lora <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bHN0bQ==">lstm <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFQ">MAP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFza2VkJTIwYXR0ZW50aW9u">masked attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0cmljcw==">metrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u">multi head attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm1z">nms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b2JqZWN0JTIwZGV0ZWN0aW9u">object detection <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b2xsYW1h">ollama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b3BlbmN2">opencv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9zaXRpb25hbCUyMGVuY29kaW5n">positional encoding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlY2lzaW9u">precision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvbXB0">prompt <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbnRpemF0aW9u">quantization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmFua2luZw==">ranking <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVMVQ==">ReLU <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmV0aXJldmFs">retireval <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UlJG">RRF <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VsZiUyMGF0dGVudGlvbg==">Self attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2VtYW50aWMlMjBtYXRjaGluZw==">semantic matching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09UQQ==">SOTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3BhcnNlJTIwZW1iZWRkaW5n">sparse embedding <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U1BMQURF">SPLADE <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGFzayUyMHF1ZXVlcw==">task queues <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGFza2lx">taskiq <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dG9waWMlMjBtYXRjaGluZw==">topic matching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHJhbnNmb3JtZXJz">transformers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dW5zbG90aA==">unsloth <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dXY=">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dml0">vit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmxt">vlm <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(22)</span></div><div class="category" data-category="YWxlbWJpYw==">alembic <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YXR0ZW50YXRpb24=">attentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Qk0yNQ==">BM25 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2FjaGluZw==">caching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2VsZXJ5">celery <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YWJzZQ==">databse <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVuc2UlMjBlbWJlZGRpbmc=">dense embedding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Zm9ybWF0">format <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2F0ZXM=">gates <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SEY=">HF <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1hZ2Vz">images <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a2V5d29yZCUyMG1hdGNoaW5n">keyword matching <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TGluZWFyaXR5">Linearity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bG9yYQ==">lora <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bHN0bQ==">lstm <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TUFQ">MAP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFza2VkJTIwYXR0ZW50aW9u">masked attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0cmljcw==">metrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVsdGklMjBoZWFkJTIwYXR0ZW50aW9u">multi head attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm1z">nms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b2JqZWN0JTIwZGV0ZWN0aW9u">object detection <span class="quarto-category-count">(4)</span></div><div class="category" data-category="b2xsYW1h">ollama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b3BlbmN2">opencv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9zaXRpb25hbCUyMGVuY29kaW5n">positional encoding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlY2lzaW9u">precision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvbXB0">prompt <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbnRpemF0aW9u">quantization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmFua2luZw==">ranking <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVMVQ==">ReLU <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmV0aXJldmFs">retireval <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UlJG">RRF <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2NoZW1h">schema <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VsZiUyMGF0dGVudGlvbg==">Self attention <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2VtYW50aWMlMjBtYXRjaGluZw==">semantic matching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09UQQ==">SOTA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3BhcnNlJTIwZW1iZWRkaW5n">sparse embedding <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U1BMQURF">SPLADE <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGFzayUyMHF1ZXVlcw==">task queues <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGFza2lx">taskiq <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dG9waWMlMjBtYXRjaGluZw==">topic matching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHJhbnNmb3JtZXJz">transformers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dW5zbG90aA==">unsloth <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dXY=">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmVyc2lvbmluZw==">versioning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dml0">vit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dmxt">vlm <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -375,7 +378,43 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="b2xsYW1hJTJDSEYlMkN1bnNsb3Ro" data-listing-date-sort="1779840000000" data-listing-file-modified-sort="1781937990574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="52">
+<div class="quarto-post image-right" data-index="0" data-categories="ZGF0YWJzZSUyQ3ZlcnNpb25pbmclMkNhbGVtYmljJTJDc2NoZW1h" data-listing-date-sort="1785715200000" data-listing-file-modified-sort="1785780726484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="688">
+<div class="thumbnail"><a href="./posts/alembic.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/alembic.html" class="no-external">Database Versioning</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YWJzZQ=='); return false;">databse</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dmVyc2lvbmluZw=='); return false;">versioning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YWxlbWJpYw=='); return false;">alembic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2NoZW1h'); return false;">schema</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/alembic.html" class="no-external">
+<p>A relation between Alembic and ORM</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/alembic.html" class="no-external">
+<div class="listing-date">
+Aug 3, 2026
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="b2xsYW1hJTJDSEYlMkN1bnNsb3Ro" data-listing-date-sort="1779840000000" data-listing-file-modified-sort="1785780726505" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="52">
 <div class="thumbnail"><a href="./posts/ollama_vs_unsloth_vs_hf.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -409,7 +448,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="dGFza2lxJTJDY2VsZXJ5JTJDdGFzayUyMHF1ZXVlcw==" data-listing-date-sort="1778976000000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356">
+<div class="quarto-post image-right" data-index="2" data-categories="dGFza2lxJTJDY2VsZXJ5JTJDdGFzayUyMHF1ZXVlcw==" data-listing-date-sort="1778976000000" data-listing-file-modified-sort="1785780726507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356">
 <div class="thumbnail"><a href="./posts/taskiq_vs_celery.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -443,7 +482,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="cHJvbXB0JTJDY2FjaGluZyUyQ0xMTQ==" data-listing-date-sort="1778371200000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="98">
+<div class="quarto-post image-right" data-index="3" data-categories="cHJvbXB0JTJDY2FjaGluZyUyQ0xMTQ==" data-listing-date-sort="1778371200000" data-listing-file-modified-sort="1785780726507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="98">
 <div class="thumbnail"><a href="./posts/prompt_caching.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -477,33 +516,31 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="U1BMQURFJTJDc3BhcnNlJTIwZW1iZWRkaW5nJTJDcmV0aXJldmFsJTJDa2V5d29yZCUyMG1hdGNoaW5n" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1781937990555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="319">
-<div class="thumbnail"><a href="./posts/SPLADE.html" class="no-external">
+<div class="quarto-post image-right" data-index="4" data-categories="UlJGJTJDcmFua2luZyUyQ3JldGlyZXZhbA==" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1785780726483" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
+<div class="thumbnail"><a href="./posts/RRF.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/SPLADE.html" class="no-external">SPLADE</a>
+<a href="./posts/RRF.html" class="no-external">RRF - Reciprocal Rank Fusion</a>
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('U1BMQURF'); return false;">SPLADE</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UlJG'); return false;">RRF</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('c3BhcnNlJTIwZW1iZWRkaW5n'); return false;">sparse embedding</div>
+<div class="listing-category" onclick="window.quartoListingCategory('cmFua2luZw=='); return false;">ranking</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('cmV0aXJldmFs'); return false;">retireval</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('a2V5d29yZCUyMG1hdGNoaW5n'); return false;">keyword matching</div>
-
 </div>
-<div class="delink listing-description"><a href="./posts/SPLADE.html" class="no-external">
-<p>A neural network based sparse embedding generator. An ideal algorithm for keyword matching in RAG.</p>
+<div class="delink listing-description"><a href="./posts/RRF.html" class="no-external">
+<p>An ranking algorithm for retrieving relevant documents based on sparse and dense embedding in RAG applications.</p>
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/SPLADE.html" class="no-external">
+<a href="./posts/RRF.html" class="no-external">
 <div class="listing-date">
 Apr 26, 2026
 </div>
@@ -513,43 +550,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Qk0yNSUyQ3NwYXJzZSUyMGVtYmVkZGluZyUyQ3JldGlyZXZhbCUyQ2tleXdvcmQlMjBtYXRjaGluZw==" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1781937990540" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="60">
-<div class="thumbnail"><a href="./posts/BM25.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/BM25.html" class="no-external">BM25 Sparse Embedding</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Qk0yNQ=='); return false;">BM25</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3BhcnNlJTIwZW1iZWRkaW5n'); return false;">sparse embedding</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cmV0aXJldmFs'); return false;">retireval</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('a2V5d29yZCUyMG1hdGNoaW5n'); return false;">keyword matching</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/BM25.html" class="no-external">
-<p>An algorithm similar to TF-IDF for generating sparse embedding. An ideal algorithm for keyword matching in RAG.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/BM25.html" class="no-external">
-<div class="listing-date">
-Apr 26, 2026
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="ZGVuc2UlMjBlbWJlZGRpbmclMkNyZXRpcmV2YWwlMkNzZW1hbnRpYyUyMG1hdGNoaW5nJTJDdG9waWMlMjBtYXRjaGluZw==" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1781937990555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="160">
+<div class="quarto-post image-right" data-index="5" data-categories="ZGVuc2UlMjBlbWJlZGRpbmclMkNyZXRpcmV2YWwlMkNzZW1hbnRpYyUyMG1hdGNoaW5nJTJDdG9waWMlMjBtYXRjaGluZw==" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1785780726484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="160">
 <div class="thumbnail"><a href="./posts/cosine_similarity.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -585,31 +586,33 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="UlJGJTJDcmFua2luZyUyQ3JldGlyZXZhbA==" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1781937990554" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
-<div class="thumbnail"><a href="./posts/RRF.html" class="no-external">
+<div class="quarto-post image-right" data-index="6" data-categories="Qk0yNSUyQ3NwYXJzZSUyMGVtYmVkZGluZyUyQ3JldGlyZXZhbCUyQ2tleXdvcmQlMjBtYXRjaGluZw==" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1785780726467" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="60">
+<div class="thumbnail"><a href="./posts/BM25.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/RRF.html" class="no-external">RRF - Reciprocal Rank Fusion</a>
+<a href="./posts/BM25.html" class="no-external">BM25 Sparse Embedding</a>
 </h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('UlJG'); return false;">RRF</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Qk0yNQ=='); return false;">BM25</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('cmFua2luZw=='); return false;">ranking</div>
+<div class="listing-category" onclick="window.quartoListingCategory('c3BhcnNlJTIwZW1iZWRkaW5n'); return false;">sparse embedding</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('cmV0aXJldmFs'); return false;">retireval</div>
 
+<div class="listing-category" onclick="window.quartoListingCategory('a2V5d29yZCUyMG1hdGNoaW5n'); return false;">keyword matching</div>
+
 </div>
-<div class="delink listing-description"><a href="./posts/RRF.html" class="no-external">
-<p>An ranking algorithm for retrieving relevant documents based on sparse and dense embedding in RAG applications.</p>
+<div class="delink listing-description"><a href="./posts/BM25.html" class="no-external">
+<p>An algorithm similar to TF-IDF for generating sparse embedding. An ideal algorithm for keyword matching in RAG.</p>
 </a></div>
 </div>
 <div class="metadata">
-<a href="./posts/RRF.html" class="no-external">
+<a href="./posts/BM25.html" class="no-external">
 <div class="listing-date">
 Apr 26, 2026
 </div>
@@ -619,7 +622,73 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="dml0JTJDYXR0ZW50YXRpb24=" data-listing-date-sort="1768262400000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="111">
+<div class="quarto-post image-right" data-index="7" data-categories="U1BMQURFJTJDc3BhcnNlJTIwZW1iZWRkaW5nJTJDcmV0aXJldmFsJTJDa2V5d29yZCUyMG1hdGNoaW5n" data-listing-date-sort="1777161600000" data-listing-file-modified-sort="1785780726484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="319">
+<div class="thumbnail"><a href="./posts/SPLADE.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/SPLADE.html" class="no-external">SPLADE</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U1BMQURF'); return false;">SPLADE</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3BhcnNlJTIwZW1iZWRkaW5n'); return false;">sparse embedding</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cmV0aXJldmFs'); return false;">retireval</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a2V5d29yZCUyMG1hdGNoaW5n'); return false;">keyword matching</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/SPLADE.html" class="no-external">
+<p>A neural network based sparse embedding generator. An ideal algorithm for keyword matching in RAG.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/SPLADE.html" class="no-external">
+<div class="listing-date">
+Apr 26, 2026
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="dXY=" data-listing-date-sort="1768262400000" data-listing-file-modified-sort="1785780726508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="176">
+<div class="thumbnail"><a href="./posts/uv_package_manager.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/uv_package_manager.html" class="no-external">uv package manager</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('dXY='); return false;">uv</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/uv_package_manager.html" class="no-external">
+<p>A fast Python package and project manager, written in Rust</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/uv_package_manager.html" class="no-external">
+<div class="listing-date">
+Jan 13, 2026
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="dml0JTJDYXR0ZW50YXRpb24=" data-listing-date-sort="1768262400000" data-listing-file-modified-sort="1785780726508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="111">
 <div class="thumbnail"><a href="./posts/vit.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts/images/vit_patch_embedding.png"  class="thumbnail-image card-img"/></p>
@@ -651,40 +720,10 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="dXY=" data-listing-date-sort="1768262400000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="176">
-<div class="thumbnail"><a href="./posts/uv_package_manager.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/uv_package_manager.html" class="no-external">uv package manager</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('dXY='); return false;">uv</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/uv_package_manager.html" class="no-external">
-<p>A fast Python package and project manager, written in Rust</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/uv_package_manager.html" class="no-external">
-<div class="listing-date">
-Jan 13, 2026
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="cG9zaXRpb25hbCUyMGVuY29kaW5nJTJDdHJhbnNmb3JtZXJz" data-listing-date-sort="1753142400000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
+<div class="quarto-post image-right" data-index="10" data-categories="cG9zaXRpb25hbCUyMGVuY29kaW5nJTJDdHJhbnNmb3JtZXJz" data-listing-date-sort="1753142400000" data-listing-file-modified-sort="1785780726507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
 <div class="thumbnail"><a href="./posts/positional_encoding.html" class="no-external">
 
-<p class="card-img-top"><img loading='lazy' src="posts/positional_encoding_files/figure-html/cell-4-output-2.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/positional_encoding_files/figure-html/cell-4-output-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -713,7 +752,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="bHN0bSUyQ2dhdGVz" data-listing-date-sort="1752537600000" data-listing-file-modified-sort="1781937990554" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="167">
+<div class="quarto-post image-right" data-index="11" data-categories="bHN0bSUyQ2dhdGVz" data-listing-date-sort="1752537600000" data-listing-file-modified-sort="1785780726483" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="167">
 <div class="thumbnail"><a href="./posts/LSTM.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts/images/lstm_gates.png"  class="thumbnail-image card-img"/></p>
@@ -745,7 +784,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="U2VsZiUyMGF0dGVudGlvbiUyQ21hc2tlZCUyMGF0dGVudGlvbiUyQ211bHRpJTIwaGVhZCUyMGF0dGVudGlvbg==" data-listing-date-sort="1751328000000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609">
+<div class="quarto-post image-right" data-index="12" data-categories="U2VsZiUyMGF0dGVudGlvbiUyQ21hc2tlZCUyMGF0dGVudGlvbiUyQ211bHRpJTIwaGVhZCUyMGF0dGVudGlvbg==" data-listing-date-sort="1751328000000" data-listing-file-modified-sort="1785780726508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609">
 <div class="thumbnail"><a href="./posts/transformers.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts/images/tokenization_and_mead_dimension.png"  class="thumbnail-image card-img"/></p>
@@ -779,7 +818,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="UmVMVSUyQ0xpbmVhcml0eQ==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1781937990555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
+<div class="quarto-post image-right" data-index="13" data-categories="UmVMVSUyQ0xpbmVhcml0eQ==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1785780726484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
 <div class="thumbnail"><a href="./posts/ReLU_activation.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts/ReLU_activation_files/figure-html/cell-19-output-3.png"  class="thumbnail-image card-img"/></p>
@@ -811,7 +850,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="dmxtJTJDbG9yYSUyQ3F1YW50aXphdGlvbg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1781937990577" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="14" data-categories="dmxtJTJDbG9yYSUyQ3F1YW50aXphdGlvbg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1785780726508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/vlm_sizes.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -845,7 +884,67 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDbm1z" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1781937990574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
+<div class="quarto-post image-right" data-index="15" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9u" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1785780726505" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="thumbnail"><a href="./posts/object_detection_pipeline.html" class="no-external">
+
+<p class="card-img-top"><img loading='lazy' src="posts/object_detection.drawio.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/object_detection_pipeline.html" class="no-external">Object detection pipeline</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/object_detection_pipeline.html" class="no-external">
+<p>Object detection pipeline</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/object_detection_pipeline.html" class="no-external">
+<div class="listing-date">
+Aug 1, 2024
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-categories="bWV0cmljcw==" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1785780726507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="155">
+<div class="thumbnail"><a href="./posts/precision_recall.html" class="no-external">
+
+<p class="card-img-top"><img loading='lazy' src="posts/precision_recall_files/figure-html/cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/precision_recall.html" class="no-external">Precision and Recall</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWV0cmljcw=='); return false;">metrics</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/precision_recall.html" class="no-external">
+<p>Significance of precision and recall</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/precision_recall.html" class="no-external">
+<div class="listing-date">
+Aug 1, 2024
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="17" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDbm1z" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1785780726505" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
 <div class="thumbnail"><a href="./posts/non_max_suppression.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -877,99 +976,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9u" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1781937990574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
-<div class="thumbnail"><a href="./posts/object_detection_pipeline.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/object_detection.drawio.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/object_detection_pipeline.html" class="no-external">Object detection pipeline</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/object_detection_pipeline.html" class="no-external">
-<p>Object detection pipeline</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/object_detection_pipeline.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="16" data-categories="bWV0cmljcw==" data-listing-date-sort="1722470400000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="155">
-<div class="thumbnail"><a href="./posts/precision_recall.html" class="no-external">
-
-<p class="card-img-top"><img loading='lazy' src="posts/precision_recall_files/figure-html/cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/precision_recall.html" class="no-external">Precision and Recall</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWV0cmljcw=='); return false;">metrics</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/precision_recall.html" class="no-external">
-<p>Significance of precision and recall</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/precision_recall.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="17" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDTUFQ" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1781937990574" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
-<div class="thumbnail"><a href="./posts/mean_average_precision.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/mean_average_precision.html" class="no-external">Mean Average Precision</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUFQ'); return false;">MAP</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/mean_average_precision.html" class="no-external">
-<p>An important metric in Object detection tasks</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/mean_average_precision.html" class="no-external">
-<div class="listing-date">
-May 23, 2024
-</div>
-<div class="listing-author">
-Shataxi Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="18" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDU09UQQ==" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1781937990555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="quarto-post image-right" data-index="18" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDU09UQQ==" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1785780726484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <div class="thumbnail"><a href="./posts/SOTA_object_detection.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -1001,7 +1008,39 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="19" data-categories="cHJlY2lzaW9uJTJDZm9ybWF0" data-listing-date-sort="1715212800000" data-listing-file-modified-sort="1781937990576" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="quarto-post image-right" data-index="19" data-categories="b2JqZWN0JTIwZGV0ZWN0aW9uJTJDTUFQ" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1785780726505" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="507">
+<div class="thumbnail"><a href="./posts/mean_average_precision.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/mean_average_precision.html" class="no-external">Mean Average Precision</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('b2JqZWN0JTIwZGV0ZWN0aW9u'); return false;">object detection</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TUFQ'); return false;">MAP</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/mean_average_precision.html" class="no-external">
+<p>An important metric in Object detection tasks</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/mean_average_precision.html" class="no-external">
+<div class="listing-date">
+May 23, 2024
+</div>
+<div class="listing-author">
+Shataxi Dubey
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="20" data-categories="cHJlY2lzaW9uJTJDZm9ybWF0" data-listing-date-sort="1715212800000" data-listing-file-modified-sort="1785780726507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <div class="thumbnail"><a href="./posts/python-format-specifier.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -1033,7 +1072,7 @@ Shataxi Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="20" data-categories="aW1hZ2VzJTJDb3BlbmN2" data-listing-date-sort="1703376000000" data-listing-file-modified-sort="1781937990553" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="quarto-post image-right" data-index="21" data-categories="aW1hZ2VzJTJDb3BlbmN2" data-listing-date-sort="1703376000000" data-listing-file-modified-sort="1785780726482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
 <div class="thumbnail"><a href="./posts/Image-transformation.html" class="no-external">
 
 <p class="card-img-top"><img loading='lazy' src="posts/Image-transformation_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
